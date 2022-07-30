@@ -1,0 +1,70 @@
+button {
+  font-size: .6rem;
+  font-weight: bold;
+  
+  padding: .5em 1.25em;
+  border-radius: .5em;
+  display: inline-block;
+
+  color: var(--dark-gray);
+  background-color: var(--light-gray);
+
+  transition: .3s ease-out;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: .8;
+}
+
+
+button.blue {
+  color: var(--light-gray);
+  background-color: var(--blue);
+  border: .125em solid var(--blue);
+}
+
+button.red {
+  color: var(--light-gray);
+  background-color: var(--red);
+  border: .125em solid var(--red);
+}
+
+button.yellow {
+  color: var(--dark-gray);
+  background-color: var(--yellow);
+  border: .125em solid var(--yellow);
+}
+
+button:is(.blue, .red, .yellow):hover {
+  opacity: 1;
+  color: var(--light-gray);
+  background-color: var(--dark-gray);
+  border: .125em solid var(--dark-gray);
+}
+
+
+button.blue-outline {
+  color: var(--blue);
+  background: none;
+  border: .125em solid var(--blue);
+}
+
+button.red-outline {
+  color: var(--red);
+  background: none;
+  border: .125em solid var(--red);
+}
+
+button.yellow-outline {
+  color: var(--yellow);
+  background: none;
+  border: .125em solid var(--yellow);
+}
+
+button:is(.blue-outline, .red-outline, .yellow-outline):hover {
+  /* opacity: 1;
+  background-color: var(--light-gray); */
+  color: var(--dark-gray);
+  border: .125em solid var(--dark-gray);
+}

@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "Catamaran";
+  src: url("/fonts/Catamaran.ttf");
+}
+
 *, *::before, *::after {
   margin: 0;
   padding: 0;
@@ -8,12 +13,12 @@
 
 :root {
   --white: #fff;
-  --red: #f26659;
-  --black: #111;
-  --blue: #8ca9d3;
+  --red: #ca3e47;
+  --black: #070d18;
+  --blue: #4f4fed;
   --yellow: #ebc999;
-  --dark-gray: #454545;
-  --light-gray: #f0eff4;
+  --dark-gray: #363636;
+  --light-gray: #ededed;
   --shadow: 0 .025rem .25rem rgba(0, 0, 0, .1);
 }
 
@@ -31,6 +36,7 @@ a {
 
 body {
   color: var(--black);
+  font-family: "Catamaran";
   background-color: var(--white);
 }
 
