@@ -22,7 +22,7 @@
 import Vue from "vue"
 
 export default Vue.extend({
-  name: "HomePage",
+  name: "NavBar",
   
   data() {
     return {

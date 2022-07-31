@@ -1,14 +1,34 @@
 <template>
   <div>
     <NavBar />
-    <div class="container">
-      <h1>Home Page</h1>
-    </div>
+    <ItemList :items="list" />
   </div>
 </template>
 
-<style scoped>
-  .container {
-    padding: 1rem;
-  }
-</style>
+<script lang="ts">
+import Vue from "vue"
+
+export default Vue.extend({
+  name: "HomePage",
+  
+  data() {
+    return {
+      list: [
+        { name: "Item Name", price: 10.0 },
+        { name: "Item Name", price: 10.0 },
+        { name: "Item Name", price: 10.0 },
+        { name: "Item Name", price: 10.0 },
+        { name: "Item Name", price: 10.0 },
+        { name: "Item Name", price: 10.0 },
+        { name: "Item Name", price: 10.0 },
+        { name: "Item Name", price: 10.0 },
+        { name: "Item Name", price: 10.0 },
+        { name: "Item Name", price: 10.0 },
+        { name: "Item Name", price: 10.0 },
+        { name: "Item Name", price: 10.0 },
+      ]
+    }
+  },
+})
+
+</script>
