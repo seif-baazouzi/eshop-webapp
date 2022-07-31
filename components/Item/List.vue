@@ -6,6 +6,7 @@
         v-for="(item, index) in items"
         :key="index"
         :name="item.name"
+        :rate="item.rate"
         :price="item.price"
       />
     </div>

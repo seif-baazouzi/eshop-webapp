@@ -14,18 +14,10 @@ export default Vue.extend({
   data() {
     return {
       list: [
-        { name: "Item Name", price: 10.0 },
-        { name: "Item Name", price: 10.0 },
-        { name: "Item Name", price: 10.0 },
-        { name: "Item Name", price: 10.0 },
-        { name: "Item Name", price: 10.0 },
-        { name: "Item Name", price: 10.0 },
-        { name: "Item Name", price: 10.0 },
-        { name: "Item Name", price: 10.0 },
-        { name: "Item Name", price: 10.0 },
-        { name: "Item Name", price: 10.0 },
-        { name: "Item Name", price: 10.0 },
-        { name: "Item Name", price: 10.0 },
+        { name: "Item Name", price: 1000, rate: 4 },
+        { name: "Item Name", price: 1000, rate: 4 },
+        { name: "Item Name", price: 1000, rate: 4 },
+        { name: "Item Name", price: 1000, rate: 4 },
       ]
     }
   },
