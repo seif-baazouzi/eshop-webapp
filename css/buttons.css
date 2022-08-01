@@ -17,6 +17,10 @@ button:hover {
   opacity: .8;
 }
 
+button:disabled {
+  opacity: .75;
+  cursor: not-allowed;
+}
 
 button.blue {
   color: var(--light-gray);

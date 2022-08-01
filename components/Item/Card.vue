@@ -53,6 +53,7 @@ export default Vue.extend({
   }
 
   img {
+    aspect-ratio: 2 / 1;
     border-radius: .25rem;
     overflow: hidden;
   }
