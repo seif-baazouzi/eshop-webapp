@@ -3,11 +3,12 @@
     <h1>Items List</h1>
     <div class="items-list">
       <ItemCard
-        v-for="(item, index) in items"
-        :key="index"
-        :name="item.name"
+        v-for="item in items"
+        :key="item.itemID"
+        :name="item.itemName"
         :rate="item.rate"
-        :price="item.price"
+        :price="item.itemPrice"
+        :image="item.itemImage"
       />
     </div>
   </div>
@@ -27,6 +28,9 @@ export default Vue.extend({
 
 <style scoped>
 .container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
   padding: .25rem 1rem;
 }
 

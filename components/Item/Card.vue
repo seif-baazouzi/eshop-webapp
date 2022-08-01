@@ -1,11 +1,11 @@
 <template>
   <div class="card-container">
-    <img src="http://127.0.0.1:8000/07.jpg">
+    <img :src="apiServer + '/images/' + image">
     <div class="content">
       <h3>{{ name }}</h3>
       <p>{{ formatPrice(price) }} dt</p>
     </div>
-    <div class="rate">
+    <div class="rate" v-if="rate">
       <Star color="var(--yellow)" size=".75rem" />
       <p>{{ rate }}</p>
     </div>
@@ -14,9 +14,16 @@
 
 <script lang="ts">
 import Vue from 'vue'
+
+import { apiServer } from "../../config/config"
+
 export default Vue.extend({
   props: {
     name: {
+      type: String,
+      required: true
+    },
+    image: {
       type: String,
       required: true
     },
@@ -30,8 +37,12 @@ export default Vue.extend({
     },
   },
 
+  created() {
+    this.apiServer = apiServer
+  },
+
   methods: {
-    formatPrice(price: number): string {
+    formatPrice(price: number): string {      
       const priceString = price.toString()
       const priceValue = priceString.substring(0, priceString.length-2)
       const priceFraction = priceString.substring(priceString.length-2)

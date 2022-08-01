@@ -1,35 +1,40 @@
 <template>
   <div>
     <NavBar />
-    <ItemList :items="list" />
+    <ItemList :items="items" />
     <Pagination
       :pages="pages"
       :selectedPage="selectedPage"
-      @set-selected-page="(page) => selectedPage = page"
+      @set-selected-page="(page) => { $router.push(`/?page=${page}`); selectedPage = page }"
     />
   </div>
 </template>
 
 <script lang="ts">
-import Vue from "vue"
-import Pagination from "../components/Pagination.vue"
+import { apiServer } from "../config/config"
 
-export default Vue.extend({
-  components: { Pagination },
+export default {
   name: "HomePage",
   
   data() {
     return {
-      selectedPage: 1,
-      pages: 10,
-      list: [
-        { name: "Item Name", price: 1000, rate: 4 },
-        { name: "Item Name", price: 1000, rate: 4 },
-        { name: "Item Name", price: 1000, rate: 4 },
-        { name: "Item Name", price: 1000, rate: 4 },
-      ]
+      selectedPage: (this.$route.query.page && !isNaN(this.$route.query.page)) ? parseInt(this.$route.query.page) : 1,
+      pages: 0,
+      items: []
     }
   },
-})
+
+  watch: {
+    selectedPage: "$fetch"
+  },
+
+  async fetch() {    
+    const res = await fetch(`${apiServer}/items?page=${this.selectedPage}`)
+    const { items, pages } = await res.json()
+    
+    this.items = items
+    this.pages = pages
+  },
+}
 
 </script>
