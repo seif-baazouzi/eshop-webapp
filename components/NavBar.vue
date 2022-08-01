@@ -1,11 +1,25 @@
 <template>
-  <nav>
+  <nav :class="{ active: scrollValue > 80 }">
     <NuxtLink to="/" class="logo">E-shop</NuxtLink>
-    
+
     <ul :class="{ hide: !isNavOpen }" @click="closeNav()">
-      <li><NuxtLink to="/" class="active">Home</NuxtLink></li>
-      <li><NuxtLink to="/shops">Shops</NuxtLink></li>
+      <li>
+        <NuxtLink
+          to="/"
+          :class="{ active: $router.currentRoute.path === '/' }"
+          >Home
+        </NuxtLink>
+      </li>
+      <li>
+        <NuxtLink
+          to="/shops"
+          :class="{ active: $router.currentRoute.path === '/shops' }"
+          >Shops
+        </NuxtLink>
+      </li>
+
       <li><div class="spacer"></div></li>
+      
       <button class="blue">Login</button>
       <button class="blue-outline">Signup</button>
     </ul>
@@ -26,8 +40,16 @@ export default Vue.extend({
   
   data() {
     return {
-      isNavOpen: false
+      isNavOpen: false,
+      scrollValue: 0,
     }
+  },
+
+  created() {
+    globalThis?.window?.addEventListener("scroll", this.handleScroll);
+  },
+  destroyed() {
+    globalThis?.window?.removeEventListener("scroll", this.handleScroll);
   },
 
   methods: {
@@ -37,7 +59,11 @@ export default Vue.extend({
 
     closeNav() {
       this.isNavOpen = false
-    }
+    },
+
+    handleScroll() {
+      this.scrollValue = globalThis?.window?.scrollY
+    },
   }
 })
 
@@ -54,6 +80,11 @@ export default Vue.extend({
     position: sticky;
     top: 0; left: 0;
     background-color: var(--white);
+    z-index: 1000;
+  }
+
+  nav.active {
+    box-shadow: var(--shadow);
   }
 
   .logo {
@@ -96,7 +127,7 @@ export default Vue.extend({
     font-weight: bold;
     text-align: center;
     color: var(--dark-gray);
-    padding: 0.25rem .6rem;
+    padding: 0.25rem .25rem;
   }
 
   ul li a:hover {
