@@ -1,12 +1,19 @@
 <template>
   <div>
     <NavBar />
-    <ItemList :items="items" />
-    <Pagination
-      :pages="pages"
-      :selectedPage="selectedPage"
-      @set-selected-page="(page) => { $router.push(`/?page=${page}`); selectedPage = page }"
-    />
+
+    <div v-if="items.length > 0">
+      <ItemList :items="items" />
+      <Pagination
+        :pages="pages"
+        :selectedPage="selectedPage"
+        @set-selected-page="(page) => { $router.push(`/?page=${page}`); selectedPage = page }"
+      />
+    </div>
+
+    <div v-else class="message-container">
+      <h1>There is no items yet!</h1>
+    </div>
   </div>
 </template>
 

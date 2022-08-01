@@ -25,6 +25,7 @@ export default {
   css: [
     "~/css/global.css",
     "~/css/buttons.css",
+    "~/css/containers.css",
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
