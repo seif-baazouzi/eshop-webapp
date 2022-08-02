@@ -63,6 +63,8 @@ export default Vue.extend({
 
   img {
     aspect-ratio: 2 / 1;
+    object-fit: cover;
+    
     border-radius: .25rem;
     overflow: hidden;
   }
