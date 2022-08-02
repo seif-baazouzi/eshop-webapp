@@ -4,11 +4,13 @@
     <div class="container">
       <img :src="apiServer + '/images/' + item.itemImage" alt="">
       <div class="content">
+        <Rate :value="item.rate" />
         <h1>{{ item.itemName }}</h1>
         <div class="price">{{ formatPrice(item.itemPrice) }} dt</div>
-        <Rate :value="item.rate" />
-        <h4>Description:</h4>
-        <p>{{ item.itemDescription }}</p>
+        <div class="description">
+          <h5>Description:</h5>
+          <p>{{ item.itemDescription }}</p>
+        </div>
       </div>
     </div>
   </div>
@@ -35,20 +37,33 @@ export default {
   async fetch() {    
     const res = await fetch(`${apiServer}/items/${this.$route.params.itemID}`)
     const { item } = await res.json()
-
+    
     this.item = item
   },
 }
 </script>
 
 <style scoped>
+  .content {
+    padding-top: 1rem;
+  }
+
+  h1 {
+    line-height: 1;
+  }
+
   .price {
     font-size: .75rem;
     font-weight: bold;
     color: var(--dark-gray);
   }
 
-  p {
+  .description {
+    margin-top: 2rem;
+  }
+
+  .description p {
+    font-size: .75rem;
     color: var(--dark-gray);
   }
 
