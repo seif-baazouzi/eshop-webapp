@@ -40,7 +40,7 @@ export default {
     const { items, pages } = await res.json()
     
     this.items = items
-    this.pages = pages
+    this.pages = pages+2
   },
 }
 

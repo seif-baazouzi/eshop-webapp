@@ -2,7 +2,9 @@
   <div class="card-container">
     <img :src="apiServer + '/images/' + image">
     <div class="content">
-      <h3>{{ name }}</h3>
+      <NuxtLink :to="'/items/' + id">
+        <h3>{{ name }}</h3>
+      </NuxtLink>
       <p>{{ formatPrice(price) }} dt</p>
     </div>
     <div class="rate" v-if="rate">
@@ -19,6 +21,10 @@ import { apiServer } from "../../config/config"
 
 export default Vue.extend({
   props: {
+    id: {
+      type: Number,
+      required: true
+    },
     name: {
       type: String,
       required: true
@@ -77,6 +83,7 @@ export default Vue.extend({
 
   h3 {
     font-size: 1rem;
+    color: var(--black);
   }
 
   p {

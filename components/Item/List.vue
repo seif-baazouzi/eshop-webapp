@@ -5,6 +5,7 @@
       <ItemCard
         v-for="item in items"
         :key="item.itemID"
+        :id="item.itemID"
         :name="item.itemName"
         :rate="item.rate"
         :price="item.itemPrice"
@@ -27,13 +28,6 @@ export default Vue.extend({
 </script>
 
 <style scoped>
-.container {
-  width: 100%;
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: .25rem 1rem;
-}
-
 h1 {
   font-size: 1.75rem;
 }
