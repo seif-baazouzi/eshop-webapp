@@ -6,7 +6,8 @@
       <div class="content">
         <h1>{{ item.itemName }}</h1>
         <div class="price">{{ item.itemPrice }} dt</div>
-        <div class="rate">{{ item.rate }}</div>
+        <Rate :value="item.rate" />
+        <h4>Description:</h4>
         <p>{{ item.itemDescription }}</p>
       </div>
     </div>
@@ -42,6 +43,10 @@ export default {
   .price {
     font-size: .75rem;
     font-weight: bold;
+    color: var(--dark-gray);
+  }
+
+  p {
     color: var(--dark-gray);
   }
 
