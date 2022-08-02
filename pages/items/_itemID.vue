@@ -5,7 +5,7 @@
       <img :src="apiServer + '/images/' + item.itemImage" alt="">
       <div class="content">
         <h1>{{ item.itemName }}</h1>
-        <div class="price">{{ item.itemPrice }} dt</div>
+        <div class="price">{{ formatPrice(item.itemPrice) }} dt</div>
         <Rate :value="item.rate" />
         <h4>Description:</h4>
         <p>{{ item.itemDescription }}</p>
@@ -16,6 +16,7 @@
 
 <script lang="ts">
 import { apiServer } from "../../config/config"
+import formatPrice from "../../utils/format-price"
 
 export default {
   name: "Item",
@@ -28,6 +29,7 @@ export default {
 
   created() {
     this.apiServer = apiServer
+    this.formatPrice = formatPrice
   },
 
   async fetch() {    

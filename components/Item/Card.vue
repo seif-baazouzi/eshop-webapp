@@ -18,6 +18,7 @@
 import Vue from 'vue'
 
 import { apiServer } from "../../config/config"
+import formatPrice from "../../utils/format-price"
 
 export default Vue.extend({
   props: {
@@ -45,17 +46,8 @@ export default Vue.extend({
 
   created() {
     this.apiServer = apiServer
+    this.formatPrice = formatPrice
   },
-
-  methods: {
-    formatPrice(price: number): string {      
-      const priceString = price.toString()
-      const priceValue = priceString.substring(0, priceString.length-2)
-      const priceFraction = priceString.substring(priceString.length-2)
-
-      return `${priceValue || "0"}.${priceFraction}`
-    }
-  }
 })
 </script>
 
