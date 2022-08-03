@@ -2,9 +2,12 @@
   <div class="shop">
     <img :src="apiServer + '/images/' + image" alt="">
     <div class="content">
-      <h2>{{ name }}</h2>
       <Rate :value="rate" />
-      <p>{{ description }}</p>
+      <h2>{{ name }}</h2>
+      <div class="description">
+        <h5>Description:</h5>
+        <p>{{ description }}</p>
+      </div>
     </div>
   </div>
 </template>
@@ -52,8 +55,12 @@ export default {
     line-height: 1;
   }
 
-  .content p {
+  .description {
     margin-top: 2rem;
+  }
+
+  .description p {
+    font-size: .75rem;
     color: var(--dark-gray);
   }
 
