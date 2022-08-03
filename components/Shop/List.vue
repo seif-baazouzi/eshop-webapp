@@ -1,14 +1,20 @@
 <template>
   <div class="container">
-    <h1>Shops List</h1>
-    <div class="shops-list">
-      <ShopCard
-        v-for="shop in shops"
-        :key="shop.shopName"
-        :name="shop.shopName"
-        :image="shop.shopImage"
-        :rate="shop.rate"
-      />
+    <div v-if="shops.length > 0">
+      <h1>Shops List</h1>
+      <div class="shops-list">
+        <ShopCard
+          v-for="shop in shops"
+          :key="shop.shopName"
+          :name="shop.shopName"
+          :image="shop.shopImage"
+          :rate="shop.rate"
+        />
+      </div>
+    </div>
+
+    <div v-else class="message-container">
+      <h1>There is no shops yet!</h1>
     </div>
   </div>
 </template>
