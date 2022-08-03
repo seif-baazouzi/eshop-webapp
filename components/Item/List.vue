@@ -1,16 +1,22 @@
 <template>
   <div class="container">
-    <h1>Items List</h1>
-    <div class="items-list">
-      <ItemCard
-        v-for="item in items"
-        :key="item.itemID"
-        :id="item.itemID"
-        :name="item.itemName"
-        :rate="item.rate"
-        :price="item.itemPrice"
-        :image="item.itemImage"
-      />
+    <div v-if="items.length > 0">
+      <h1>Items List</h1>
+      <div class="items-list">
+        <ItemCard
+          v-for="item in items"
+          :key="item.itemID"
+          :id="item.itemID"
+          :name="item.itemName"
+          :rate="item.rate"
+          :price="item.itemPrice"
+          :image="item.itemImage"
+        />
+      </div>
+    </div>
+
+    <div v-else class="message-container">
+      <h1>There is no items yet!</h1>
     </div>
   </div>
 </template>
