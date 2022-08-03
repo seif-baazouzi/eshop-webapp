@@ -2,14 +2,12 @@
   <div>
     <NavBar/>
     
-    <div class="shop">
-      <img :src="apiServer + '/images/' + shop.shopImage" alt="">
-      <div class="content">
-        <h2>{{ shop.shopName }}</h2>
-        <Rate :value="shop.rate" />
-        <p>{{ shop.shopDescription }}</p>
-      </div>
-    </div>
+    <ShopSingle
+      :name="shop.shopName"
+      :image="shop.shopImage"
+      :description="shop.shopDescription"
+      :rate="shop.rate"
+    />
     
     <div class="separator"></div>
 
@@ -64,45 +62,10 @@ export default {
 </script>
 
 <style scoped>
-  .shop img {
-    aspect-ratio: 2 / 1;
-    object-fit: cover;
-  }
-  
-  .content {
-    padding: 1rem;
-  }
-
-  .content h2 {
-    line-height: 1;
-  }
-
-  .content p {
-    margin-top: 2rem;
-    color: var(--dark-gray);
-  }
-
   .separator {
-    width: 90%;
+    width: calc(100% - 2rem);
     height: .125rem;
     margin: 1rem auto;
     background-color: var(--light-gray);
-  }
-
-  @media screen and (min-width: 768px) {
-    .shop {
-      padding: 1rem;
-      display: flex;
-      align-items: flex-start;
-    }
-
-    .shop img {
-      width: 60%;
-      border-radius: .5rem;
-    }
-
-    .shop .content {
-      width: 40%;
-    }
   }
 </style>
