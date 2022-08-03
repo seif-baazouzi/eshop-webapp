@@ -2,7 +2,9 @@
   <div class="card">
     <img :src="apiServer + '/images/' + image">
     <div class="content">
-      <h3>{{ name }}</h3>
+      <NuxtLink :to="'/shops/' + name">
+        <h3>{{ name }}</h3>
+      </NuxtLink>
       <Rate :value="rate" />
     </div>
   </div>
@@ -12,7 +14,6 @@
 import Vue from 'vue'
 
 import { apiServer } from "../../config/config"
-import formatPrice from "../../utils/format-price"
 
 export default Vue.extend({
   props: {
@@ -53,5 +54,9 @@ export default Vue.extend({
     align-items: center;
     justify-content: center;
     flex-direction: column;
+  }
+
+  .content h3 {
+    color: var(--black);
   }
 </style>

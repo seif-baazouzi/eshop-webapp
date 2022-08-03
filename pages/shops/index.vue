@@ -11,7 +11,7 @@
 </template>
 
 <script lang="ts">
-import { apiServer } from "../config/config"
+import { apiServer } from "../../config/config"
 
 export default {
   name: "ShopsPage",
