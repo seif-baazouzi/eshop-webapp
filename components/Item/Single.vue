@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="item">
     <img :src="apiServer + '/images/' + image" alt="">
     <div class="content">
       <Rate :value="rate" />
@@ -50,7 +50,7 @@ export default {
 
 <style scoped>
   .content {
-    padding-top: 1rem;
+    padding: 1rem;
   }
 
   h1 {
@@ -73,7 +73,8 @@ export default {
   }
 
   @media screen and (min-width: 768px) {
-    .container {
+    .item {
+      padding: 1rem;
       display: flex;
       align-items: flex-start;
       gap: 1rem;
