@@ -27,8 +27,12 @@
 
       <li><div class="spacer"></div></li>
 
-      <button class="blue">Login</button>
-      <button class="blue-outline">Signup</button>
+      <NuxtLink to="/login">
+        <button class="blue">Login</button>
+      </NuxtLink>
+      <NuxtLink to="/signup">
+        <button class="blue-outline">Signup</button>
+      </NuxtLink>
     </ul>
 
     <ul :class="{ hide: !isNavOpen }" @click="closeNav()" v-else>
@@ -102,6 +106,7 @@ export default Vue.extend({
 
     logout() {
       this.$store.commit("setIsLogin", false)
+      this.$router.push({ path: "/" })
     }
   }
 })

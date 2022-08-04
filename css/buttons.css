@@ -22,6 +22,11 @@ button:disabled {
   cursor: not-allowed;
 }
 
+button.block {
+  width: 100%;
+  display: block;
+}
+
 button.blue {
   color: var(--light-gray);
   background-color: var(--blue);
