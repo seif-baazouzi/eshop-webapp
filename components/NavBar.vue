@@ -12,6 +12,13 @@
       </li>
       <li>
         <NuxtLink
+          to="/items"
+          :class="{ active: $router.currentRoute.path === '/items' }"
+          >Items
+        </NuxtLink>
+      </li>
+      <li>
+        <NuxtLink
           to="/shops"
           :class="{ active: $router.currentRoute.path === '/shops' }"
           >Shops

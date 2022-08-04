@@ -13,3 +13,13 @@
   margin: 0 auto;
   padding: .25rem 1rem;
 }
+
+.list-container {
+  padding-bottom: 2rem;
+}
+
+.center-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

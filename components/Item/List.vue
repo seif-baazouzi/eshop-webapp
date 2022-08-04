@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div v-if="items.length > 0">
-      <h1>Items List</h1>
+      <h3>{{ title }}</h3>
       <div class="items-list">
         <ItemCard
           v-for="item in items"
@@ -25,6 +25,10 @@
 import Vue from 'vue'
 export default Vue.extend({
   props: {
+    title: {
+      type: String,
+      default: "Items List"
+    },
     items: {
       type: Array,
       required: true
@@ -34,28 +38,24 @@ export default Vue.extend({
 </script>
 
 <style scoped>
-h1 {
-  font-size: 1.75rem;
-}
+  .items-list {
+    width: 100%;
+    padding-bottom: 1rem;
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: 1fr;
+    gap: .25rem;
+  }
 
-.items-list {
-  width: 100%;
-  display: grid;
-  padding-bottom: 5rem;
-  grid-template-rows: auto;
-  grid-template-columns: 1fr;
-  gap: .25rem;
-}
+  @media screen and (min-width: 520px) {
+    .items-list { grid-template-columns: 1fr 1fr }
+  }
 
-@media screen and (min-width: 520px) {
-  .items-list { grid-template-columns: 1fr 1fr }
-}
+  @media screen and (min-width: 920px) {
+    .items-list { grid-template-columns: 1fr 1fr 1fr }
+  }
 
-@media screen and (min-width: 920px) {
-  .items-list { grid-template-columns: 1fr 1fr 1fr }
-}
-
-@media screen and (min-width: 1200px) {
-  .items-list { grid-template-columns: 1fr 1fr 1fr 1fr }
-}
+  @media screen and (min-width: 1200px) {
+    .items-list { grid-template-columns: 1fr 1fr 1fr 1fr }
+  }
 </style>

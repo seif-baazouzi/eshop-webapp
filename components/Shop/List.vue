@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div v-if="shops.length > 0">
-      <h1>Shops List</h1>
+      <h3>{{ title }}</h3>
       <div class="shops-list">
         <ShopCard
           v-for="shop in shops"
@@ -23,6 +23,10 @@
 import Vue from 'vue'
 export default Vue.extend({
   props: {
+    title: {
+      type: String,
+      default: "Shops List"
+    },
     shops: {
       type: Array,
       required: true
@@ -32,14 +36,10 @@ export default Vue.extend({
 </script>
 
 <style scoped>
-  h1 {
-    font-size: 1.75rem;
-  }
-
   .shops-list {
     width: 100%;
+    padding-bottom: 1rem;
     display: grid;
-    padding-bottom: 5rem;
     grid-template-rows: auto;
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
