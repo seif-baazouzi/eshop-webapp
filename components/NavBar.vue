@@ -2,7 +2,7 @@
   <nav :class="{ active: scrollValue > 80 }">
     <NuxtLink to="/" class="logo">E-shop</NuxtLink>
 
-    <ul :class="{ hide: !isNavOpen }" @click="closeNav()">
+    <ul :class="{ hide: !isNavOpen }" @click="closeNav()" v-if="$store.state.isLogin === false">
       <li>
         <NuxtLink
           to="/"
@@ -26,9 +26,37 @@
       </li>
 
       <li><div class="spacer"></div></li>
-      
+
       <button class="blue">Login</button>
       <button class="blue-outline">Signup</button>
+    </ul>
+
+    <ul :class="{ hide: !isNavOpen }" @click="closeNav()" v-else>
+      <li>
+        <NuxtLink
+          to="/"
+          :class="{ active: $router.currentRoute.path === '/' }"
+          >Home
+        </NuxtLink>
+      </li>
+      <li>
+        <NuxtLink
+          to="/items"
+          :class="{ active: $router.currentRoute.path === '/items' }"
+          >Items
+        </NuxtLink>
+      </li>
+      <li>
+        <NuxtLink
+          to="/shops"
+          :class="{ active: $router.currentRoute.path === '/shops' }"
+          >Shops
+        </NuxtLink>
+      </li>
+
+      <li><div class="spacer"></div></li>
+
+      <button class="blue" @click="logout()">Logout</button>
     </ul>
 
     <div class="burger" :class="{ x: isNavOpen }" @click="toggleNav()">
@@ -71,6 +99,10 @@ export default Vue.extend({
     handleScroll() {
       this.scrollValue = globalThis?.window?.scrollY
     },
+
+    logout() {
+      this.$store.commit("setIsLogin", false)
+    }
   }
 })
 
