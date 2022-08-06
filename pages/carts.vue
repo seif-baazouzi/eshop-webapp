@@ -8,6 +8,7 @@
           :key="shopName"
           :items="items"
           :shopName="shopName"
+          @zero-items="(shopName) => deleteShopCart(shopName)"
         />
     </div>
     
@@ -29,6 +30,13 @@ export default {
     const localStorageCartsList = localStorage.getItem("carts-list")
     if(localStorageCartsList != null) {
       this.shopsCarts = JSON.parse(localStorageCartsList)
+    }
+  },
+
+  methods: {
+    deleteShopCart(shopName) {
+      delete this.shopsCarts[shopName]
+      this.$forceUpdate()
     }
   }
 }

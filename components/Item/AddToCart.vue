@@ -72,12 +72,21 @@ export default Vue.extend({
       // set item amount
       cartsList[this.shopName][this.itemID] = amount
       this.amount = amount
-
+      
       // remove items that has zero amount
       for(let itemID in cartsList[this.shopName]) {
         if(cartsList[this.shopName][itemID] == 0) {
           delete cartsList[this.shopName][itemID]
           this.$emit("zero-amount", itemID)
+        }
+      }
+
+
+      // remove shop cart when there is no items in it
+      for(let shopName in cartsList) {
+        if(Object.keys(cartsList[shopName]).length === 0) {
+          delete cartsList[this.shopName]
+          this.$emit("zero-items", shopName)
         }
       }
 

@@ -18,6 +18,7 @@
               :amount="amount"
               :shopName="shopName"
               @zero-amount="(id) => deleteItemFromCart(id)"
+              @zero-items="(shopName) => $emit('zero-items', shopName)"
             />
           </tbody>
         </table>
@@ -49,7 +50,7 @@ export default {
     deleteItemFromCart(itemID) {
       delete this.itemsList[itemID]
       this.$forceUpdate()
-    }
+    },
   }
 }
 </script>

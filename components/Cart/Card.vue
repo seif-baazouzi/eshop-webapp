@@ -10,6 +10,7 @@
         :itemID="itemID"
         :shopName="shopName"
         @zero-amount="(id) => $emit('zero-amount', id)"
+        @zero-items="(shopName) => $emit('zero-items', shopName)"
       />
     </td>
   </tr>
