@@ -3,7 +3,7 @@
     <td>
       <img :src="apiServer + '/images/' + image" alt="">
     </td>
-    <td class="name">{{ name }}</td>
+    <td class="name"><NuxtLink :to="'/items/' + itemID">{{ name }}</NuxtLink></td>
     <td class="price">{{ formatPrice(price) }} dt</td>
     <td>
       <ItemAddToCart
@@ -89,9 +89,10 @@ export default {
     text-align: left;
   }
 
-  .name {
+  .name a {
     font-size: 1rem;
     font-weight: bold;
+    color: var(--black);
   }
 
   .price {
