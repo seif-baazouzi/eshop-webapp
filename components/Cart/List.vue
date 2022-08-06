@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="Object.keys(items).length > 0">
+    <div v-if="Object.keys(itemsList).length > 0">
       <h4>{{ shopName }} Cart Items</h4>
       <div class="table">
         <table>
@@ -12,11 +12,12 @@
           </thead>
           <tbody>
             <CartCard
-              v-for="(amount, itemID) in items"
+              v-for="(amount, itemID) in itemsList"
               :key="amount"
               :itemID="itemID"
               :amount="amount"
               :shopName="shopName"
+              @zero-amount="(id) => deleteItemFromCart(id)"
             />
           </tbody>
         </table>
@@ -37,6 +38,19 @@ export default {
       required: true,
     },
   },
+
+  data() {
+    return {
+      itemsList: this.items
+    }
+  },
+
+  methods: {
+    deleteItemFromCart(itemID) {
+      delete this.itemsList[itemID]
+      this.$forceUpdate()
+    }
+  }
 }
 </script>
 

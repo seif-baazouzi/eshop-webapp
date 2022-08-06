@@ -73,6 +73,14 @@ export default Vue.extend({
       cartsList[this.shopName][this.itemID] = amount
       this.amount = amount
 
+      // remove items that has zero amount
+      for(let itemID in cartsList[this.shopName]) {
+        if(cartsList[this.shopName][itemID] == 0) {
+          delete cartsList[this.shopName][itemID]
+          this.$emit("zero-amount", itemID)
+        }
+      }
+
       // set localStorage
       localStorage.setItem("carts-list", JSON.stringify(cartsList))
     }

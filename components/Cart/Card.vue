@@ -9,6 +9,7 @@
       <ItemAddToCart
         :itemID="itemID"
         :shopName="shopName"
+        @zero-amount="(id) => $emit('zero-amount', id)"
       />
     </td>
   </tr>
