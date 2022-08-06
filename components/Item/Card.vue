@@ -6,6 +6,10 @@
         <h3>{{ name }}</h3>
       </NuxtLink>
       <p>{{ formatPrice(price) }} dt</p>
+      <ItemAddToCart
+        :itemID="id"
+        :shopName="shopName"
+      />
     </div>
     <div class="rate" v-if="rate">
       <Star color="var(--yellow)" size=".75rem" />
@@ -40,6 +44,10 @@ export default Vue.extend({
     },
     rate: {
       type: Number,
+      required: true
+    },
+    shopName: {
+      type: String,
       required: true
     },
   },

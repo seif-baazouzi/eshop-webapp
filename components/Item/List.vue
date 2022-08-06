@@ -11,6 +11,7 @@
           :rate="item.rate"
           :price="item.itemPrice"
           :image="item.itemImage"
+          :shopName="item.itemShop"
         />
       </div>
     </div>

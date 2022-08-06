@@ -9,6 +9,10 @@
         <h5>Description:</h5>
         <p>{{ description }}</p>
       </div>
+      <ItemAddToCart
+        :itemID="id"
+        :shopName="shopName"
+      />
     </div>
   </div>
 </template>
@@ -19,6 +23,10 @@ import formatPrice from "../../utils/format-price"
 
 export default {
   props: {
+    id: {
+      type: Number,
+      required: true
+    },
     name: {
       type: String,
       required: true
@@ -39,6 +47,10 @@ export default {
       type: Number,
       required: true
     },
+    shopName: {
+      type: String,
+      required: true  
+    }
   },
   
   created() {

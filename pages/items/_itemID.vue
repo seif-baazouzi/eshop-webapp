@@ -2,11 +2,13 @@
   <div>
     <NavBar/>
     <ItemSingle
+      :id="item.itemID"
       :name="item.itemName"
       :image="item.itemImage"
       :rate="item.rate"
       :price="item.itemPrice"
       :description="item.itemDescription"
+      :shopName="item.itemShop"
     />
   </div>
 </template>
