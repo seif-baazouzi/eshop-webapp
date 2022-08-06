@@ -3,8 +3,8 @@
     <td>
       <img :src="apiServer + '/images/' + image" alt="">
     </td>
-    <td>{{ name }}</td>
-    <td>{{ formatPrice(price) }} dt</td>
+    <td class="name">{{ name }}</td>
+    <td class="price">{{ formatPrice(price) }} dt</td>
     <td>
       <ItemAddToCart
         :itemID="itemID"
@@ -67,9 +67,16 @@ export default {
   }
 
   img {
-    width: 8rem;
     aspect-ratio: 2 / 1;
     object-fit: cover;
+  }
+
+  td:first-child, img {
+    width: 8rem;
+  }
+
+  td:last-child {
+    width: 8rem;
   }
   
   td {
@@ -78,5 +85,14 @@ export default {
     border-top: .075rem solid var(--light-gray);
     transition: background .3s ease-in;
     text-align: left;
+  }
+
+  .name {
+    font-size: 1rem;
+    font-weight: bold;
+  }
+
+  .price {
+    color: var(--dark-gray);
   }
 </style>

@@ -1,24 +1,26 @@
 <template>
   <div>
-    <h4>{{ shopName }} Cart Items</h4>
-    <div class="table">
-      <table>
-        <thead>
-          <th>Product</th>
-          <th></th>
-          <th>Price</th>
-          <th>Amount</th>
-        </thead>
-        <tbody>
-          <CartCard
-            v-for="(amount, itemID) in items"
-            :key="amount"
-            :itemID="itemID"
-            :amount="amount"
-            :shopName="shopName"
-          />
-        </tbody>
-      </table>
+    <div v-if="Object.keys(items).length > 0">
+      <h4>{{ shopName }} Cart Items</h4>
+      <div class="table">
+        <table>
+          <thead>
+            <th>Product</th>
+            <th></th>
+            <th>Price</th>
+            <th>Amount</th>
+          </thead>
+          <tbody>
+            <CartCard
+              v-for="(amount, itemID) in items"
+              :key="amount"
+              :itemID="itemID"
+              :amount="amount"
+              :shopName="shopName"
+            />
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </template>
@@ -58,7 +60,7 @@ export default {
   }
 
   .table table :is(td, th) {
-    padding: .5rem 1rem;
+    padding: .25rem;
   } 
 
   .table table tbody tr:hover {
