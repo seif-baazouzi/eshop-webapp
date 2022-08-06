@@ -24,13 +24,20 @@
           >Shops
         </NuxtLink>
       </li>
+      <li>
+        <NuxtLink
+          to="/carts"
+          :class="{ active: $router.currentRoute.path === '/carts' }"
+          >Carts
+        </NuxtLink>
+      </li>
 
       <li><div class="spacer"></div></li>
 
-      <NuxtLink to="/login">
+      <NuxtLink to="/login" class="vav-btn">
         <button class="blue">Login</button>
       </NuxtLink>
-      <NuxtLink to="/signup">
+      <NuxtLink to="/signup" class="vav-btn">
         <button class="blue-outline">Signup</button>
       </NuxtLink>
     </ul>
@@ -55,6 +62,13 @@
           to="/shops"
           :class="{ active: $router.currentRoute.path === '/shops' }"
           >Shops
+        </NuxtLink>
+      </li>
+      <li>
+        <NuxtLink
+          to="/carts"
+          :class="{ active: $router.currentRoute.path === '/carts' }"
+          >Carts
         </NuxtLink>
       </li>
 
@@ -182,7 +196,7 @@ export default Vue.extend({
     color: var(--blue);  
   }
 
-  ul button {
+  .vav-btn, ul button {
     width: 100%;
   }
 
@@ -228,7 +242,7 @@ export default Vue.extend({
       background: none;
     }
 
-    ul button {
+    .vav-btn {
       display: block;
       margin-left: .25rem;
     }
