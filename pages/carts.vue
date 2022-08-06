@@ -1,10 +1,15 @@
 <template>
   <div>
     <NavBar />
-    <h1>Carts List</h1>
-    <ul>
-      <li v-for="(value, key) in shopsCarts" :key="key">{{ key }} => {{ value }}</li>
-    </ul>
+    <div class="container">
+      <h1>Carts List</h1>
+        <CartList
+          v-for="(items, shopName) in shopsCarts"
+          :key="shopName"
+          :items="items"
+          :shopName="shopName"
+        />
+    </div>
   </div>
 </template>
 
