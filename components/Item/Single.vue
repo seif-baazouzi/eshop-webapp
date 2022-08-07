@@ -4,6 +4,7 @@
     <div class="content">
       <Rate :value="rate" />
       <h1>{{ name }}</h1>
+      <span>by <NuxtLink :to="'/shops/' + shopName">{{ shopName }}</NuxtLink></span>
       <div class="price">{{ formatPrice(price) }} dt</div>
       <div class="description">
         <h5>Description:</h5>
@@ -67,6 +68,13 @@ export default {
 
   h1 {
     line-height: 1;
+  }
+
+  span {
+    font-size: .75rem;
+    font-weight: bold;
+    position: relative;
+    top: -0.5rem;
   }
 
   .price {

@@ -5,6 +5,7 @@
       <NuxtLink :to="'/items/' + id">
         <h3>{{ name }}</h3>
       </NuxtLink>
+      <span>by <NuxtLink :to="'/shops/' + shopName">{{ shopName }}</NuxtLink></span>
       <p>{{ formatPrice(price) }} dt</p>
       <ItemAddToCart
         :itemID="id"
@@ -81,6 +82,13 @@ export default Vue.extend({
     border-top: .125rem solid var(--light-gray);
     margin-top: .125rem;
     padding-top: .25rem;
+  }
+
+  span {
+    font-size: .6rem;
+    font-weight: bold;
+    position: relative;
+    top: -0.75rem;
   }
 
   h3 {
