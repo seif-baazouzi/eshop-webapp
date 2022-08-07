@@ -81,7 +81,6 @@ export default Vue.extend({
         }
       }
 
-
       // remove shop cart when there is no items in it
       for(let shopName in cartsList) {
         if(Object.keys(cartsList[shopName]).length === 0) {

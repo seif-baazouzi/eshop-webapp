@@ -61,3 +61,10 @@ body {
 @media screen and (min-width: 1200px) {
   html { font-size: 1.4rem }
 }
+
+
+/* global classes */
+
+.center {
+  text-align: center;
+}
