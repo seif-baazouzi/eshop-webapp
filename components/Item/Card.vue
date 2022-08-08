@@ -2,6 +2,7 @@
   <div class="card-container">
     <img :src="apiServer + '/images/' + image">
     <div class="content">
+      <Rate :value="rate" />
       <NuxtLink :to="'/items/' + id">
         <h3>{{ name }}</h3>
       </NuxtLink>
@@ -11,10 +12,6 @@
         :itemID="id"
         :shopName="shopName"
       />
-    </div>
-    <div class="rate" v-if="rate">
-      <Star color="var(--yellow)" size=".75rem" />
-      <p>{{ rate }}</p>
     </div>
   </div>
 </template>
@@ -63,11 +60,7 @@ export default Vue.extend({
 <style scoped>
   .card-container {
     width: 100%;
-    padding: .25rem;
     position: relative;
-    border-radius: .25rem;
-    border: .125rem solid var(--light-gray);
-    overflow: hidden;
   }
 
   img {
@@ -79,16 +72,7 @@ export default Vue.extend({
   }
 
   .content {
-    border-top: .125rem solid var(--light-gray);
-    margin-top: .125rem;
-    padding-top: .25rem;
-  }
-
-  span {
-    font-size: .6rem;
-    font-weight: bold;
-    position: relative;
-    top: -0.75rem;
+    padding: .25rem;
   }
 
   h3 {
@@ -96,9 +80,16 @@ export default Vue.extend({
     color: var(--black);
   }
 
+  span {
+    display: block;
+    font-size: .6rem;
+    font-weight: bold;
+  }
+
   p {
     font-size: .75rem;
     color: var(--dark-gray);
+    margin: .5rem 0;
   }
 
   .rate {
