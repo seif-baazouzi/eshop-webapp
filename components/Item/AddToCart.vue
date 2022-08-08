@@ -4,9 +4,9 @@
       <button class="block blue" @click="setItemAmounts(1)">Add To Cart</button>
     </div>
     <div class="buttons-container" v-else>
-      <button class="outline" @click="setItemAmounts(amount-1)">-</button>
+      <button class="outline" @click="setItemAmounts(parseInt(amount)-1)">-</button>
       <input type="number" min="0" v-model="amount" />
-      <button class="outline" @click="setItemAmounts(amount+1)">+</button>
+      <button class="outline" @click="setItemAmounts(parseInt(amount)+1)">+</button>
     </div>
   </div>
 </template>
