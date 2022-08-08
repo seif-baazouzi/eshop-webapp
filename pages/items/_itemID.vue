@@ -10,6 +10,7 @@
       :description="item.itemDescription"
       :shopName="item.itemShop"
     />
+    <CommentList :itemID="item.itemID" />
   </div>
 </template>
 
