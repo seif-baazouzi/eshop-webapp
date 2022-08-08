@@ -67,7 +67,7 @@ export default {
   }
 
   h1 {
-    line-height: 1;
+    margin: .25rem 0;
   }
 
   span {
@@ -84,29 +84,32 @@ export default {
   }
 
   .description {
-    margin-top: 2rem;
+    margin: 2rem 0;
+  }
+
+  .description h5 {
+    margin-bottom: .25rem;
   }
 
   .description p {
     font-size: .75rem;
     color: var(--dark-gray);
+    line-height: 1.25;
   }
 
   @media screen and (min-width: 768px) {
     .item {
-      padding: 1rem;
       display: flex;
       align-items: flex-start;
-      gap: 1rem;
     }
 
     img {
       width: 60%;
-      border-radius: .5rem;
     }
 
     .content {
       width: 40%;
+      padding: 1rem;
     }
   }
 </style>
