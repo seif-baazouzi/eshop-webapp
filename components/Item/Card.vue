@@ -78,6 +78,7 @@ export default Vue.extend({
   h3 {
     font-size: 1rem;
     color: var(--black);
+    padding: .25rem 0;
   }
 
   span {

@@ -2,10 +2,10 @@
   <div class="card">
     <img :src="apiServer + '/images/' + image">
     <div class="content">
+      <Rate :value="rate" />
       <NuxtLink :to="'/shops/' + name">
         <h3>{{ name }}</h3>
       </NuxtLink>
-      <Rate :value="rate" />
     </div>
   </div>
 </template>
@@ -43,9 +43,9 @@ export default Vue.extend({
   }
 
   img {
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 2 / 1;
     object-fit: cover;
-    border-radius: .25rem;
+    border-radius: .125rem;
   }
 
   .content {
@@ -58,5 +58,6 @@ export default Vue.extend({
 
   .content h3 {
     color: var(--black);
+    padding: .25rem 0;
   }
 </style>
