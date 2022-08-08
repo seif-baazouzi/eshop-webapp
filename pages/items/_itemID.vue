@@ -10,7 +10,7 @@
       :description="item.itemDescription"
       :shopName="item.itemShop"
     />
-    <CommentList :itemID="item.itemID" />
+    <CommentList v-if="item.itemID" :itemID="item.itemID" />
   </div>
 </template>
 
