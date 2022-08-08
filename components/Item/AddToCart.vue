@@ -1,12 +1,12 @@
 <template>
   <div>
-    <div class="buttons-container" v-if="amount === 0">
+    <div v-if="amount === 0">
       <button class="block blue" @click="setItemAmounts(1)">Add To Cart</button>
     </div>
     <div class="buttons-container" v-else>
-      <button class="red" @click="setItemAmounts(amount-1)">-</button>
+      <button class="outline" @click="setItemAmounts(amount-1)">-</button>
       <input type="number" min="0" v-model="amount" />
-      <button class="blue" @click="setItemAmounts(amount+1)">+</button>
+      <button class="outline" @click="setItemAmounts(amount+1)">+</button>
     </div>
   </div>
 </template>
@@ -102,12 +102,35 @@ export default Vue.extend({
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: .25rem;
+
+    --border: 0.125rem solid var(--light-gray);
+    border: var(--border);
+    border-radius: .25rem;
+
+    overflow: hidden;
   }
 
-  .buttons-container input {
+  input {
+    width: 100%;
     padding: .25rem;
-    border-radius: .25rem;
-    border: .125rem solid var(--light-gray);
+    text-align: center;
+    font-size: .75rem;
+
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
+  }
+
+  .buttons-container button {
+    border: none;
+    border-radius: 0;
+  }
+
+  .buttons-container button:first-child {
+    border-right: var(--border);
+  }
+
+
+  .buttons-container button:last-child {
+    border-left: var(--border);
   }
 </style>

@@ -2,14 +2,13 @@
   <div>
     <NavBar />
     <div class="container" v-if="Object.keys(shopsCarts).length !== 0">
-      <h1>Carts List</h1>
-        <CartList
-          v-for="(items, shopName) in shopsCarts"
-          :key="shopName"
-          :items="items"
-          :shopName="shopName"
-          @zero-items="(shopName) => deleteShopCart(shopName)"
-        />
+      <CartList
+        v-for="(items, shopName) in shopsCarts"
+        :key="shopName"
+        :items="items"
+        :shopName="shopName"
+        @zero-items="(shopName) => deleteShopCart(shopName)"
+      />
     </div>
     
     <div class="message-container" v-else>

@@ -1,10 +1,7 @@
 <template>
   <div>
-    <div v-if="Object.keys(itemsList).length > 0">
-      <div class="header">
-        <h4>{{ shopName }} Cart Items</h4>
-        <button class="blue" @click="showPopup = true">Checkout</button>
-      </div>
+    <div v-if="Object.keys(itemsList).length > 0" class="wrapper">
+      <h3>{{ shopName }} Shop Cart List</h3>
       <div class="table">
         <table>
           <thead>
@@ -23,6 +20,11 @@
               @zero-amount="(id) => deleteItemFromCart(id)"
               @zero-items="(shopName) => $emit('zero-items', shopName)"
             />
+            <tr>
+              <td>
+                <button class="blue" @click="showPopup = true">Checkout</button>
+              </td>
+            </tr>
           </tbody>
         </table>
       </div>
@@ -124,14 +126,14 @@ export default {
 </script>
 
 <style scoped>
-  .header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  .wrapper {
+    max-width: 768px;
+    margin: 0 auto 2rem;
   }
   
   .table {
     width: 100%;
+    margin-top: 1rem;
     background-color: var(--white);
     overflow-x: auto;
     border-radius: .125rem;
@@ -150,10 +152,10 @@ export default {
 
   .table table :is(td, th) {
     padding: .25rem;
-  } 
+  }
 
-  .table table tbody tr:hover {
-    background-color: var(--light-gray);
+  .table table tbody tr:last-child:hover {
+    background: none;
   }
 
   h2 {

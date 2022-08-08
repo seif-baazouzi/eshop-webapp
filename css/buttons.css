@@ -6,6 +6,7 @@ button {
   padding: .5em 1.25em;
   border-radius: .5em;
   display: inline-block;
+  border: .125em solid var(--light-gray);
 
   color: var(--dark-gray);
   background-color: var(--light-gray);
@@ -53,6 +54,10 @@ button:is(.blue, .red, .yellow):hover {
   border: .125em solid var(--dark-gray);
 }
 
+
+button.outline {
+  background: none;
+}
 
 button.blue-outline {
   color: var(--blue);
