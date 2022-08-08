@@ -1,7 +1,13 @@
 <template>
   <div class="container">
     <div v-if="items.length > 0">
-      <h3>{{ title }}</h3>
+      <div class="header">
+        <h3>{{ title }}</h3>
+        <NuxtLink to="/items" v-if="seeMore && items.length >= 4">
+          <button class="blue-outline">See more</button>
+        </NuxtLink>
+      </div>
+
       <div class="items-list">
         <ItemCard
           v-for="item in items"
@@ -34,11 +40,22 @@ export default Vue.extend({
       type: Array,
       required: true
     },
+    seeMore: {
+      type: Boolean,
+      default: false,
+    },
   }
 })
 </script>
 
 <style scoped>
+  .header {
+    padding: .75rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
   .items-list {
     width: 100%;
     padding-bottom: 1rem;

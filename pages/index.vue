@@ -7,21 +7,11 @@
     </div>
 
     <div class="list-container">
-      <ItemList :items="items" title="Newest Items" />
-      <div class="center-container">
-        <NuxtLink to="/items">
-          <button class="blue-outline">See more</button>
-        </NuxtLink>
-      </div>
+      <ItemList :items="items" title="Newest Items" :seeMore="true" />
     </div>
 
     <div class="list-container">
-      <ShopList :shops="shops" title="Newest Shops" />
-      <div class="center-container">
-        <NuxtLink to="/shops">
-          <button class="blue-outline">See more</button>
-        </NuxtLink>
-      </div>
+      <ShopList :shops="shops" title="Newest Shops" :seeMore="true" />
     </div>
   </div>
 </template>

@@ -1,7 +1,13 @@
 <template>
   <div class="container">
     <div v-if="shops.length > 0">
-      <h3>{{ title }}</h3>
+      <div class="header">
+        <h3>{{ title }}</h3>
+        <NuxtLink to="/shops" v-if="seeMore && shops.length >= 5">
+          <button class="blue-outline">See more</button>
+        </NuxtLink>
+      </div>
+
       <div class="shops-list">
         <ShopCard
           v-for="shop in shops"
@@ -31,11 +37,22 @@ export default Vue.extend({
       type: Array,
       required: true
     },
+    seeMore: {
+      type: Boolean,
+      default: false,
+    },
   }
 })
 </script>
 
 <style scoped>
+  .header {
+    padding: .75rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
   .shops-list {
     width: 100%;
     padding-bottom: 1rem;
