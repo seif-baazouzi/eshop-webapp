@@ -3,6 +3,7 @@
     <NavBar />
 
     <div class="form-container">
+      <h2 class="center">Welcome Back</h2>
       <form @submit="handleSubmit($event)" class="form-content-container">
         <Input
           type="text"
