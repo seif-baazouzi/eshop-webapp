@@ -9,8 +9,6 @@
       :rate="shop.rate"
     />
     
-    <div class="separator"></div>
-
     <ItemList :items="items" />
     <Pagination
       :pages="pages"
@@ -54,12 +52,3 @@ export default {
   },
 }
 </script>
-
-<style scoped>
-  .separator {
-    width: calc(100% - 2rem);
-    height: .125rem;
-    margin: 1rem auto;
-    background-color: var(--light-gray);
-  }
-</style>

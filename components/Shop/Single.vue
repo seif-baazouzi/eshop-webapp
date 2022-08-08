@@ -52,28 +52,31 @@ export default {
   }
 
   .content h2 {
-    line-height: 1;
+    margin-top: .25rem;
   }
 
   .description {
-    margin-top: 2rem;
+    margin: 2rem 0;
+  }
+
+  .description h5 {
+    margin-bottom: .25rem;
   }
 
   .description p {
     font-size: .75rem;
     color: var(--dark-gray);
+    line-height: 1.25;
   }
 
   @media screen and (min-width: 768px) {
     .shop {
-      padding: 1rem;
       display: flex;
       align-items: flex-start;
     }
 
     .shop img {
       width: 60%;
-      border-radius: .5rem;
     }
 
     .shop .content {
