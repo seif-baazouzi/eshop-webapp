@@ -94,7 +94,7 @@ export default {
           commentID: data.commentID,
           commentValue: this.comment,
           commentDate: new Date(),
-          username: this.$store.username,
+          username: this.$store.state.username,
         }
 
         this.comments = [ newComment, ...this.comments ]

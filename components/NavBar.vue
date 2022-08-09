@@ -88,6 +88,8 @@
 <script lang="ts">
 import Vue from "vue"
 
+import { clearCookies } from "../utils/cookies"
+
 export default Vue.extend({
   name: "NavBar",
   
@@ -99,10 +101,12 @@ export default Vue.extend({
   },
 
   created() {
-    globalThis?.window?.addEventListener("scroll", this.handleScroll);
+    this.clearCookies = clearCookies
+
+    globalThis?.window?.addEventListener("scroll", this.handleScroll)
   },
   destroyed() {
-    globalThis?.window?.removeEventListener("scroll", this.handleScroll);
+    globalThis?.window?.removeEventListener("scroll", this.handleScroll)
   },
 
   methods: {
@@ -119,7 +123,11 @@ export default Vue.extend({
     },
 
     logout() {
+      clearCookies()
+
       this.$store.commit("setIsLogin", false)
+      this.$store.commit("setUsername", null)
+      
       this.$router.push({ path: "/" })
     }
   }
