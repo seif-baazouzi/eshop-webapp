@@ -1,6 +1,10 @@
 <template>
   <div class="comment">
-    <span>{{ username }}</span>
+    <div class="header">
+      <span class="username">{{ username }}</span>
+      <span class="dot">•</span>
+      <span class="date">{{ (new Date(date)).toDateString() }}</span>
+    </div>
     <p>{{ comment }}</p>
   </div>
 </template>
@@ -17,26 +21,45 @@ export default Vue.extend({
       type: String,
       required: true,
     },
+    date: {
+      type: String,
+      required: true,
+    },
   }
 })
 </script>
 
 <style scoped>
   .comment {
-    width: fit-content;
-    min-width: 120px;
-    padding: .25rem;
-    border-radius: .25rem;
-    background: var(--light-gray);
+    width: 100%;
+    padding: .25rem 0;
+    border-bottom: .125rem solid var(--light-gray);
   }
 
-  span {
-    font-size: .6rem;
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: .25rem;
+  }
+
+  .username {
+    font-size: .75rem;
     font-weight: bold;
+  }
+
+  .dot {
+    font-size: .75rem;
+  }
+
+  .date {
+    font-size: .6rem;
     color: var(--dark-gray);
   }
 
   p {
     font-size: 1rem;
+    padding-top: .25rem;
+    color: var(--dark-gray);
   }
 </style>

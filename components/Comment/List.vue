@@ -1,17 +1,23 @@
 <template>
   <div>
-    <div class="comments-container" v-if="comments.length != 0">
-      <h3>Comments</h3>
-      <CommentSingle
-        v-for="(comment) in comments"
-        :key="comment.commentID"
-        :username="comment.username"
-        :comment="comment.commentValue"
-      />
-    </div>
+    <div class="comments-container">
+      <div class="header">
+        <h4>Comments</h4>
+      </div>
 
-    <div class="message-container">
-      <h1>There is no comments yet</h1>
+      <div v-if="comments.length != 0">
+        <CommentSingle
+          v-for="(comment) in comments"
+          :key="comment.commentID"
+          :username="comment.username"
+          :comment="comment.commentValue"
+          :date="comment.commentDate"
+        />
+      </div>
+
+      <div class="message-container" v-else>
+        <h2>There is no comments yet</h2>
+      </div>
     </div>
   </div>
 </template>
@@ -48,6 +54,10 @@ export default {
   .comments-container {
     width: 100%;
     max-width: 520px;
-    margin: 1rem auto;
+    margin: 1rem auto 4rem;
+  }
+
+  .header {
+    margin-bottom: 1rem;
   }
 </style>
