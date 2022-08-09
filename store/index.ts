@@ -1,5 +1,6 @@
 export const state = () => ({
   isLogin: false,
+  username: null,
 })
 
 export const mutations = {
