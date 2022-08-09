@@ -18,6 +18,10 @@
           @edit="(newComment) => editComment(comment.commentID, newComment)"
           @delete="() => deleteComment(comment.commentID)"
         />
+
+        <div class="center" style="margin-top: 1rem" v-if="loadMore">
+          <button class="blue-outline" @click="fetchMoreComments()">Load More</button>
+        </div>
       </div>
 
       <div class="message-container" v-else>
@@ -67,6 +71,9 @@ export default {
       commentValue: "",
       errors: {},
       showAddPopup: false,
+
+      commentsPage: 1,
+      loadMore: true,
     }
   },
 
@@ -74,7 +81,13 @@ export default {
     let res = await fetch(`${apiServer}/comments/${this.itemID}`)
     const { comments } = await res.json()
     
-    this.comments = comments
+    this.comments = [ ...this.comments, ...comments ]
+
+    if(comments.length >= 20) {
+      this.commentsPage += 1
+    } else {
+      this.loadMore = false
+    }
   },
 
   methods: {
@@ -122,6 +135,19 @@ export default {
     deleteComment(commentID) {      
       this.comments = this.comments.filter(c => c.commentID != commentID)
     },
+
+    async fetchMoreComments() {
+      let res = await fetch(`${apiServer}/comments/${this.itemID}?page=${this.commentsPage}`)
+      const { comments } = await res.json()
+      
+      this.comments = [ ...this.comments, ...comments ]
+
+      if(comments.length >= 20) {
+        this.commentsPage += 1
+      } else {
+        this.loadMore = false
+      }
+    }
   },
 }
 </script>
