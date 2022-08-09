@@ -10,9 +10,13 @@
         <CommentSingle
           v-for="(comment) in comments"
           :key="comment.commentID"
+          :commentID="comment.commentID"
           :username="comment.username"
           :comment="comment.commentValue"
           :date="comment.commentDate"
+
+          @edit="(newComment) => editComment(comment.commentID, newComment)"
+          @delete="() => deleteComment(comment.commentID)"
         />
       </div>
 
@@ -28,9 +32,9 @@
           <Input
             type="text"
             label="Comment"
-            :value="comment"
-            :error="errors.comment"
-            @input="(value) => comment = value"
+            :value="commentValue"
+            :error="errors.commentValue"
+            @input="(value) => commentValue = value"
           />
           <button class="block blue">Submit</button>
         </form>
@@ -48,10 +52,8 @@
 
 <script lang="ts">
 import { apiServer } from "../../config/config"
-import Popup from '../Popup.vue'
 
 export default {
-  components: { Popup },
   props: {
     itemID: {
       type: Number,
@@ -62,7 +64,7 @@ export default {
   data() {
     return {
       comments: [],
-      comment: "",
+      commentValue: "",
       errors: {},
       showAddPopup: false,
     }
@@ -85,14 +87,14 @@ export default {
           "Content-Type": "application/json",
           "X-Token": document.cookie.split("=")[1],
         },
-        body: JSON.stringify({ commentValue: this.comment })
+        body: JSON.stringify({ commentValue: this.commentValue })
       })
       const data = await res.json()
       
       if(data.message === "success") {
         const newComment = {
           commentID: data.commentID,
-          commentValue: this.comment,
+          commentValue: this.commentValue,
           commentDate: new Date(),
           username: this.$store.state.username,
         }
@@ -100,12 +102,26 @@ export default {
         this.comments = [ newComment, ...this.comments ]
         
         this.showAddPopup = false
-        this.comment = ""
+        this.commentValue = ""
         this.errors = {}
       } else {
         this.errors = data
       }
-    }
+    },
+
+    editComment(commentID, newComment) {      
+      this.comments = this.comments.map(c => {
+        if(c.commentID === commentID) {
+          c.commentValue = newComment
+        }
+
+        return c
+      })
+    },
+
+    deleteComment(commentID) {      
+      this.comments = this.comments.filter(c => c.commentID != commentID)
+    },
   },
 }
 </script>
@@ -115,6 +131,7 @@ export default {
     width: 100%;
     max-width: 520px;
     margin: 1rem auto 4rem;
+    padding: 1rem;
   }
 
   .header {
