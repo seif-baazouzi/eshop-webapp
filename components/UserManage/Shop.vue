@@ -11,7 +11,7 @@
       <button class="blue-outline" @click="showPopup = 'edit'">Edit</button>
     </td>
     <td class="btn">
-      <button class="red-outline">Delete</button>
+      <button class="red-outline" @click="showPopup = 'delete'">Delete</button>
     </td>
 
     <Popup v-if="showPopup != null" @close="showPopup = null">
@@ -33,6 +33,13 @@
             @input="(value) => shopDescription = value"
           />
           <button class="block blue">Submit</button>
+        </form>
+      </div>
+
+      <div v-if="showPopup === 'delete'" class="popup-content center">
+        <h3>Are you sure you want to delete this shop!</h3>
+        <form @submit="handleDeleteSubmit($event)">
+          <button class="red">Delete</button>
         </form>
       </div>
     </Popup>
@@ -101,6 +108,27 @@ export default Vue.extend({
         this.errors = {}
       } else {
         this.errors = data
+      }
+    },
+
+    async handleDeleteSubmit(event) {
+      event.preventDefault()
+
+      const rawCookie = this.$nuxt?.context?.req?.headers.cookie || document.cookie || ""
+      const cookies = parseCookies(rawCookie)
+
+      const res = await fetch(`${apiServer}/shops/${this.name}`, {
+        method: "DELETE",
+        headers: {
+          "X-Token": cookies.token,
+        },
+      })
+      const data = await res.json()
+      
+      if(data.message === "success") {
+        this.$emit("delete")
+
+        this.showPopup = null
       }
     },
   }

@@ -18,6 +18,7 @@
             :description="shop.shopDescription"
 
             @edit="(newData) => editShop(shop.shopName, newData)"
+            @delete="() => deleteShop(shop.shopName)"
           />
         </tbody>
       </table>
@@ -52,6 +53,10 @@ export default Vue.extend({
 
         return s
       })
+    },
+
+    deleteShop(shopName) {
+      this.shops = this.shops.filter(s => s.shopName != shopName)
     },
   }
 })
