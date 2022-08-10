@@ -55,7 +55,7 @@ export default {
       if(data.token) {
         document.cookie = "token=" + data.token
         this.$store.commit("setIsLogin", true)
-        this.$router.push({ path: "/" })
+        window.location.pathname = "/"
       } else {
         this.errors = data
       }
