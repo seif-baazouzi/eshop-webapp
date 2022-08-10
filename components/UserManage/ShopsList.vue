@@ -17,6 +17,7 @@
             :image="shop.shopImage"
             :description="shop.shopDescription"
 
+            @edit-image="(image) => editShopImage(shop.shopName, image)"
             @edit="(newData) => editShop(shop.shopName, newData)"
             @delete="() => deleteShop(shop.shopName)"
           />
@@ -49,6 +50,16 @@ export default Vue.extend({
         if(s.shopName === oldShopName) {
           s.shopName = shopName
           s.shopDescription = shopDescription
+        }
+
+        return s
+      })
+    },
+
+    editShopImage(shopName, image) {
+      this.shops = this.shops.map(s => {
+        if(s.shopName === shopName) {
+          s.shopImage = image
         }
 
         return s

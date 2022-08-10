@@ -5,7 +5,7 @@
       <NuxtLink :to="'/shops/' + name">{{ name }}</NuxtLink>
     </td>
     <td class="btn">
-      <button class="yellow-outline">Edit Image</button>
+      <button class="yellow-outline" @click="showPopup = 'edit-image'">Edit Image</button>
     </td>
     <td class="btn">
       <button class="blue-outline" @click="showPopup = 'edit'">Edit</button>
@@ -31,6 +31,20 @@
             :value="shopDescription"
             :error="errors.shopDescription"
             @input="(value) => shopDescription = value"
+          />
+          <button class="block blue">Submit</button>
+        </form>
+      </div>
+
+      <div v-if="showPopup === 'edit-image'" class="popup-content">
+        <h3 class="center">Edit shop Image</h3>
+        <form @submit="handleEditImageSubmit($event)">
+          <Input
+            type="file"
+            label="Image"
+            :value="shopImage"
+            :error="errors.message"
+            @change="(value) => shopImage = value"
           />
           <button class="block blue">Submit</button>
         </form>
@@ -76,6 +90,7 @@ export default Vue.extend({
     return {
       showPopup: null,
       shopName: this.name,
+      shopImage: [],
       shopDescription: this.description,
       errors: {},
     }
@@ -111,6 +126,35 @@ export default Vue.extend({
       }
     },
 
+    async handleEditImageSubmit(event) {
+      event.preventDefault()
+
+      if(!this.shopImage[0]) return
+
+      const rawCookie = this.$nuxt?.context?.req?.headers.cookie || document.cookie || ""
+      const cookies = parseCookies(rawCookie)
+      
+      const image = this.shopImage[0];
+      const formData = new FormData();
+      formData.append("image", image)
+
+      const res = await fetch(`${apiServer}/shops/${this.name}`, {
+        method: "PATCH",
+        headers: {
+          "X-Token": cookies.token
+        },
+        body: formData
+      })
+      const data = await res.json()
+
+      if(data.message === "success") {
+        this.$emit("edit-image", data.image)
+        this.showPopup = null
+      } else {
+        this.errors = data
+      }
+    },
+
     async handleDeleteSubmit(event) {
       event.preventDefault()
 
@@ -127,7 +171,6 @@ export default Vue.extend({
       
       if(data.message === "success") {
         this.$emit("delete")
-
         this.showPopup = null
       }
     },
