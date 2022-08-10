@@ -131,33 +131,6 @@ export default {
     margin: 0 auto 2rem;
   }
   
-  .table {
-    width: 100%;
-    margin-top: 1rem;
-    background-color: var(--white);
-    overflow-x: auto;
-    border-radius: .125rem;
-  }
-
-  .table table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-
-  .table table th {
-    text-align: left;
-    font-size: .75rem;
-    color: var(--dark-gray);
-  }
-
-  .table table :is(td, th) {
-    padding: .25rem;
-  }
-
-  .table table tbody tr:last-child:hover {
-    background: none;
-  }
-
   h2 {
     margin-bottom: 1rem;
   }

@@ -80,22 +80,16 @@ export default {
   td:last-child {
     width: 8rem;
   }
-  
-  td {
-    font-size: .75rem;
-    padding: .5rem 1rem;
-    border-top: .075rem solid var(--light-gray);
-    transition: background .3s ease-in;
-    text-align: left;
-  }
 
   .name a {
+    padding: .25rem;
     font-size: 1rem;
     font-weight: bold;
     color: var(--black);
   }
 
   .price {
+    padding: .25rem;
     color: var(--dark-gray);
   }
 </style>

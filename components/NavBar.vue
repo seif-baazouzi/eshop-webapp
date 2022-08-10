@@ -71,6 +71,13 @@
           >Carts
         </NuxtLink>
       </li>
+      <li>
+        <NuxtLink
+          to="/manage-shops"
+          :class="{ active: $router.currentRoute.path === '/manage-shops' }"
+          >ManageShops
+        </NuxtLink>
+      </li>
 
       <li><div class="spacer"></div></li>
 

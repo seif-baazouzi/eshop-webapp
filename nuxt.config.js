@@ -24,6 +24,7 @@ export default {
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
     "~/css/global.css",
+    "~/css/tables.css",
     "~/css/buttons.css",
     "~/css/containers.css",
   ],

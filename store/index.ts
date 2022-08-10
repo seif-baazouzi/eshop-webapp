@@ -18,7 +18,6 @@ export const actions = {
         }
       })
       const data = await res.json()
-      console.log(data);
 
       if (data.username) {
         commit("setIsLogin", true)

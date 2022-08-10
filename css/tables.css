@@ -1,0 +1,37 @@
+.table {
+  width: 100%;
+  margin-top: 1rem;
+  background-color: var(--white);
+  overflow-x: auto;
+  border-radius: .125rem;
+}
+
+.table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table table th {
+  text-align: left;
+  font-size: .75rem;
+  color: var(--dark-gray);
+}
+
+.table table :is(td, th) {
+  padding: .25rem;
+}
+
+.table table tbody tr:last-child:hover {
+  background: none;
+}
+
+.table table tbody tr {
+  border-top: .075rem solid var(--light-gray);
+}
+
+.table table tbody td {
+  font-size: .75rem;
+  padding: .5rem 0;
+  transition: background .3s ease-in;
+  text-align: left;
+}
