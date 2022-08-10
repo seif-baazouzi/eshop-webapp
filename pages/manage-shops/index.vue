@@ -6,27 +6,9 @@
         <h3>Shops List</h3>
         <button class="blue">Add new shop</button>
       </div>
-
-      <div class="table">
-        <table>
-          <thead>
-            <th>Shop Image</th>
-            <th>Shop Name</th>
-            <th>Edit Image</th>
-            <th>Edit</th>
-            <th>Delete</th>
-          </thead>
-          <tbody>
-            <tr v-for="(shop) in shops" :key="shop.shopName">
-              <td class="img"><img :src="apiServer + '/images/' + shop.shopImage" /></td>
-              <td class="name"><NuxtLink :to="'/shops/' + shop.shopName">{{ shop.shopName }}</NuxtLink></td>
-              <td class="btn"><button class="yellow-outline">Edit Image</button></td>
-              <td class="btn"><button class="blue-outline">Edit</button></td>
-              <td class="btn"><button class="red-outline">Delete</button></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      <UserManageShopsList
+        :shops="shops"
+      />
     </div>
   </div>
 </template>
@@ -44,10 +26,6 @@ export default {
       pages: 0,
       shops: []
     }
-  },
-
-  created() {
-    this.apiServer = apiServer
   },
 
   watch: {
@@ -81,26 +59,5 @@ export default {
     display: flex;
     align-items: center;
     justify-content: space-between;
-  }
-
-  td.img {
-    width: 8rem;
-  }
-
-  td.img img {
-    aspect-ratio: 2 / 1;
-    object-fit: cover;
-  }
-
-  td.name a {
-    width: 100%;
-    padding: .25rem;
-    font-size: 1rem;
-    color: var(--black);
-  }
-
-  td.btn {
-    width: 6rem;
-    text-align: center;
   }
 </style>

@@ -32,8 +32,8 @@
   }
 
   .box {
-    width: 100%;
-    max-width: 520px;
+    width: fit-content;
+    max-width: 100%;
     padding: 1rem;
     background: var(--white);
     border-radius: .25rem;

@@ -1,7 +1,13 @@
 <template>
   <div class="input-box">
     <label :for="label">{{ label }}</label>
+    <textarea
+      v-if="type === 'textarea'"
+      :value="value"
+      @keyup="$emit('input', $event.target.value)"
+    />
     <input
+      v-else
       :id="label"
       :type="type"
       :value="value"
@@ -51,15 +57,21 @@ export default Vue.extend({
     font-weight: bold;
   }
 
-  .input-box input {
+  .input-box :is(input, textarea) {
     padding: .5em;
     border-radius: .25em;
     background-color: var(--light-gray);
     border: .125em solid var(--light-gray);
   }
 
-  .input-box input:focus {
+  .input-box :is(input, textarea):focus {
     border: .125em solid var(--blue);
+  }
+
+  .input-box textarea {
+    width: 100%;
+    height: 7rem;
+    resize: vertical;
   }
 
   .input-box span {
