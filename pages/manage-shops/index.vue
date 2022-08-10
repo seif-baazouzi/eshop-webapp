@@ -2,12 +2,9 @@
   <div>
     <NavBar />
     <div class="container">
-      <div class="header">
-        <h3>Shops List</h3>
-        <button class="blue">Add new shop</button>
-      </div>
       <UserManageShopsList
         :shops="shops"
+        @change="(newShopsList) => shops = newShopsList"
       />
     </div>
   </div>
@@ -52,12 +49,5 @@ export default {
 <style scoped>
   .container {
     max-width: 968px;
-  }
-
-  .header {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
   }
 </style>
