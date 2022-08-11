@@ -42,7 +42,7 @@
       </form>
     </div>
 
-    <div v-else-if="popupName === 'edit-image'" class="popup-content">
+    <div v-else-if="popupName === 'edit-image'">
       <h3 class="center">Edit shop Image</h3>
       <form @submit="handleEditImageSubmit($event)">
         <Input
@@ -56,7 +56,7 @@
       </form>
     </div>
 
-    <div v-else-if="popupName === 'delete'" class="popup-content center">
+    <div v-else-if="popupName === 'delete'" class="center">
       <h3>Are you sure you want to delete this shop!</h3>
       <form @submit="handleDeleteSubmit($event)">
         <button class="red">Delete</button>
@@ -209,7 +209,7 @@ export default Vue.extend({
     max-width: 100%;
   }
 
-  .popup-content h3 {
+  h3 {
     margin-bottom: 1rem;
   }
 </style>
