@@ -1,5 +1,5 @@
 <template>
-  <svg :width="size" :fill="color" version="1.1" x="0" y="0" viewBox="0 0 329.942 329.942" style="enable-background:new 0 0 329.942 329.942;" xml:space="preserve">
+  <svg @click="$emit('click')" :width="size" :fill="color" version="1.1" x="0" y="0" viewBox="0 0 329.942 329.942" style="enable-background:new 0 0 329.942 329.942;" xml:space="preserve">
     <path id="XMLID_16_" d="M329.208,126.666c-1.765-5.431-6.459-9.389-12.109-10.209l-95.822-13.922l-42.854-86.837
       c-2.527-5.12-7.742-8.362-13.451-8.362c-5.71,0-10.925,3.242-13.451,8.362l-42.851,86.836l-95.825,13.922
       c-5.65,0.821-10.345,4.779-12.109,10.209c-1.764,5.431-0.293,11.392,3.796,15.377l69.339,67.582L57.496,305.07

@@ -1,10 +1,10 @@
 <template>
   <div class="rate-container">
-    <Star size=".5rem" :color="value >= 1 ? 'var(--yellow)' : 'var(--light-gray)'" />
-    <Star size=".5rem" :color="value >= 2 ? 'var(--yellow)' : 'var(--light-gray)'" />
-    <Star size=".5rem" :color="value >= 3 ? 'var(--yellow)' : 'var(--light-gray)'" />
-    <Star size=".5rem" :color="value >= 4 ? 'var(--yellow)' : 'var(--light-gray)'" />
-    <Star size=".5rem" :color="value >= 5 ? 'var(--yellow)' : 'var(--light-gray)'" />
+    <Star size=".5rem" :color="value >= 1 ? 'var(--yellow)' : 'var(--light-gray)'" @click="$emit('change', 1)" />
+    <Star size=".5rem" :color="value >= 2 ? 'var(--yellow)' : 'var(--light-gray)'" @click="$emit('change', 2)" />
+    <Star size=".5rem" :color="value >= 3 ? 'var(--yellow)' : 'var(--light-gray)'" @click="$emit('change', 3)" />
+    <Star size=".5rem" :color="value >= 4 ? 'var(--yellow)' : 'var(--light-gray)'" @click="$emit('change', 4)" />
+    <Star size=".5rem" :color="value >= 5 ? 'var(--yellow)' : 'var(--light-gray)'" @click="$emit('change', 5)" />
   </div>
 </template>
 
@@ -25,5 +25,6 @@ export default Vue.extend({
     width: fit-content;
     display: flex;
     gap: .125rem;
+    cursor: pointer;
   }
 </style>
