@@ -18,6 +18,7 @@
             v-for="(shop) in shops"
             :key="shop.shopName"
             :name="shop.shopName"
+            :rate="shop.rate"
             :image="shop.shopImage"
             :description="shop.shopDescription"
 
@@ -29,28 +30,15 @@
       </table>
     </div>
 
-    <Popup v-if="showPopup" @close="showPopup = false">
-      <div class="popup-content">
-        <h3 class="center">Add new shop</h3>
-        <form @submit="handleSubmit($event)">
-          <Input
-            type="text"
-            label="ShopName"
-            :value="shopName"
-            :error="errors.shopName"
-            @input="(value) => shopName = value"
-          />
-          <Input
-            type="textarea"
-            label="ShopDescription"
-            :value="shopDescription"
-            :error="errors.shopDescription"
-            @input="(value) => shopDescription = value"
-          />
-          <button class="block blue">Submit</button>
-        </form>
-      </div>
-    </Popup>
+    <UserManageShopPopups
+      v-if="showPopup"
+      @close="showPopup = false"
+    
+      popupName="add"
+      initialShopName=""
+      initialShopDescription=""
+      @add="(newShop) => addShop(newShop)"
+    />
   </div>
 </template>
 
@@ -58,7 +46,6 @@
 import Vue from 'vue'
 
 import { apiServer } from "../../config/config"
-import { parseCookies } from "../../utils/cookies"
 
 export default Vue.extend({
   props: {
@@ -71,9 +58,6 @@ export default Vue.extend({
   data() {
     return {
       showPopup: false,
-      shopName: "",
-      shopDescription: "",
-      errors: {},
     }
   },
 
@@ -82,36 +66,8 @@ export default Vue.extend({
   },
 
   methods: {
-    async handleSubmit(event) {
-      event.preventDefault()
-
-      const rawCookie = this.$nuxt?.context?.req?.headers.cookie || document.cookie || ""
-      const cookies = parseCookies(rawCookie)
-
-      const res = await fetch(`${apiServer}/shops`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "X-Token": cookies.token,
-        },
-        body: JSON.stringify({
-          shopName: this.shopName,
-          shopDescription: this.shopDescription,
-        })
-      })
-      const data = await res.json()
-      
-      if(data.message === "success") {
-        this.$emit("change", [
-          { shopName: this.shopName, shopDescription: this.shopDescription },
-          ...this.shops,
-        ])
-
-        this.showPopup = false
-        this.errors = {}
-      } else {
-        this.errors = data
-      }
+    addShop(newShop) {
+      this.shops = [ newShop, ...this.shops ]
     },
 
     editShop(oldShopName, { shopName, shopDescription }) {
@@ -148,14 +104,5 @@ export default Vue.extend({
     display: flex;
     align-items: center;
     justify-content: space-between;
-  }
-
-  .popup-content {
-    width: 768px;
-    max-width: 100%;
-  }
-
-  .popup-content h3 {
-    margin-bottom: 1rem;
   }
 </style>

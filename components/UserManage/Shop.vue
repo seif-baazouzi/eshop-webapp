@@ -2,61 +2,30 @@
   <tr>
     <td class="img"><img :src="apiServer + '/images/' + image" /></td>
     <td class="name">
+      <Rate :value="rate" />
       <NuxtLink :to="'/shops/' + name">{{ name }}</NuxtLink>
     </td>
     <td class="btn">
-      <button class="yellow-outline" @click="showPopup = 'edit-image'">Edit Image</button>
+      <button class="yellow-outline" @click="popupName = 'edit-image'">Edit Image</button>
     </td>
     <td class="btn">
-      <button class="blue-outline" @click="showPopup = 'edit'">Edit</button>
+      <button class="blue-outline" @click="popupName = 'edit'">Edit</button>
     </td>
     <td class="btn">
-      <button class="red-outline" @click="showPopup = 'delete'">Delete</button>
+      <button class="red-outline" @click="popupName = 'delete'">Delete</button>
     </td>
 
-    <Popup v-if="showPopup != null" @close="showPopup = null">
-      <div v-if="showPopup === 'edit'" class="popup-content edit-popup">
-        <h3 class="center">Edit Shop</h3>
-        <form @submit="handleEditSubmit($event)">
-          <Input
-            type="text"
-            label="ShopName"
-            :value="shopName"
-            :error="errors.shopName"
-            @input="(value) => shopName = value"
-          />
-          <Input
-            type="textarea"
-            label="ShopDescription"
-            :value="shopDescription"
-            :error="errors.shopDescription"
-            @input="(value) => shopDescription = value"
-          />
-          <button class="block blue">Submit</button>
-        </form>
-      </div>
-
-      <div v-if="showPopup === 'edit-image'" class="popup-content">
-        <h3 class="center">Edit shop Image</h3>
-        <form @submit="handleEditImageSubmit($event)">
-          <Input
-            type="file"
-            label="Image"
-            :value="shopImage"
-            :error="errors.message"
-            @change="(value) => shopImage = value"
-          />
-          <button class="block blue">Submit</button>
-        </form>
-      </div>
-
-      <div v-if="showPopup === 'delete'" class="popup-content center">
-        <h3>Are you sure you want to delete this shop!</h3>
-        <form @submit="handleDeleteSubmit($event)">
-          <button class="red">Delete</button>
-        </form>
-      </div>
-    </Popup>
+    <UserManageShopPopups
+      v-if="popupName != null"
+      @close="popupName = null"
+    
+      :popupName="popupName"
+      :initialShopName="name"
+      :initialShopDescription="description"
+      @edit="(newShop) => $emit('edit', newShop)"
+      @edit-image="(newImage) => $emit('edit-image', newImage)"
+      @delete="() => $emit('delete')"
+    />
   </tr>
 </template>
 
@@ -64,12 +33,15 @@
 import Vue from 'vue'
 
 import { apiServer } from "../../config/config"
-import { parseCookies } from "../../utils/cookies"
 
 export default Vue.extend({
   props: {
     name: {
       type: String,
+      required: true,
+    },
+    rate: {
+      type: Number,
       required: true,
     },
     description: {
@@ -82,99 +54,15 @@ export default Vue.extend({
     },
   },
 
-  created() {
-    this.apiServer = apiServer
-  },
-
   data() {
     return {
-      showPopup: null,
-      shopName: this.name,
-      shopImage: [],
-      shopDescription: this.description,
-      errors: {},
+      popupName: null,
     }
   },
 
-  methods: {
-    async handleEditSubmit(event) {
-      event.preventDefault()
-
-      const rawCookie = this.$nuxt?.context?.req?.headers.cookie || document.cookie || ""
-      const cookies = parseCookies(rawCookie)
-
-      const res = await fetch(`${apiServer}/shops/${this.name}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          "X-Token": cookies.token,
-        },
-        body: JSON.stringify({
-          shopName: this.shopName,
-          shopDescription: this.shopDescription,
-        })
-      })
-      const data = await res.json()
-      
-      if(data.message === "success") {
-        this.$emit("edit", { shopName: this.shopName, shopDescription: this.shopDescription })
-
-        this.showPopup = null
-        this.errors = {}
-      } else {
-        this.errors = data
-      }
-    },
-
-    async handleEditImageSubmit(event) {
-      event.preventDefault()
-
-      if(!this.shopImage[0]) return
-
-      const rawCookie = this.$nuxt?.context?.req?.headers.cookie || document.cookie || ""
-      const cookies = parseCookies(rawCookie)
-      
-      const image = this.shopImage[0];
-      const formData = new FormData();
-      formData.append("image", image)
-
-      const res = await fetch(`${apiServer}/shops/${this.name}`, {
-        method: "PATCH",
-        headers: {
-          "X-Token": cookies.token
-        },
-        body: formData
-      })
-      const data = await res.json()
-
-      if(data.message === "success") {
-        this.$emit("edit-image", data.image)
-        this.showPopup = null
-      } else {
-        this.errors = data
-      }
-    },
-
-    async handleDeleteSubmit(event) {
-      event.preventDefault()
-
-      const rawCookie = this.$nuxt?.context?.req?.headers.cookie || document.cookie || ""
-      const cookies = parseCookies(rawCookie)
-
-      const res = await fetch(`${apiServer}/shops/${this.name}`, {
-        method: "DELETE",
-        headers: {
-          "X-Token": cookies.token,
-        },
-      })
-      const data = await res.json()
-      
-      if(data.message === "success") {
-        this.$emit("delete")
-        this.showPopup = null
-      }
-    },
-  }
+  created() {
+    this.apiServer = apiServer
+  },
 })
 </script>
 
@@ -188,24 +76,20 @@ export default Vue.extend({
     object-fit: cover;
   }
 
+  td.name {
+    padding: .5rem;
+  }
+
   td.name a {
     width: 100%;
-    padding: .25rem;
+    padding: .125rem 0;
     font-size: 1rem;
     color: var(--black);
+    display: inline-block;
   }
 
   td.btn {
     width: 6rem;
     text-align: center;
-  }
-
-  .edit-popup {
-    width: 768px;
-    max-width: 100%;
-  }
-
-  .popup-content h3 {
-    margin-bottom: 1rem;
   }
 </style>

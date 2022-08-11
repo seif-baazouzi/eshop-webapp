@@ -7,7 +7,7 @@
       @keyup="$emit('input', $event.target.value)"
     />
     <input
-      v-if="type === 'file'"
+      v-else-if="type === 'file'"
       :id="label"
       :type="type"
       @change="$emit('change', $event.target.files)"
