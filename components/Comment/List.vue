@@ -29,28 +29,15 @@
       </div>
     </div>
 
-    <Popup v-if="showAddPopup" @close="showAddPopup = false">
-      <div v-if="$store.state.isLogin">
-        <h3 class="center">Add new Comment</h3>
-        <form @submit="handleSubmit($event)">
-          <Input
-            type="text"
-            label="Comment"
-            :value="commentValue"
-            :error="errors.commentValue"
-            @input="(value) => commentValue = value"
-          />
-          <button class="block blue">Submit</button>
-        </form>
-      </div>
+    <CommentPopups
+      v-if="showAddPopup"
+      @close="showAddPopup = false"
 
-      <div v-else class="center">
-        <h2>You must login to checkout</h2>
-        <NuxtLink to="/login">
-          <button class="blue-outline">Login</button>
-        </NuxtLink>
-      </div>
-    </Popup>
+      popupName="add"
+      :itemID="itemID"
+      initialCommentValue=""
+      @add="(newComment) => addComment(newComment)"
+    />
   </div>
 </template>
 
@@ -67,11 +54,9 @@ export default {
   
   data() {
     return {
-      comments: [],
-      commentValue: "",
-      errors: {},
       showAddPopup: false,
 
+      comments: [],
       commentsPage: 1,
       loadMore: true,
     }
@@ -91,37 +76,11 @@ export default {
   },
 
   methods: {
-    async handleSubmit(event) {
-      event.preventDefault()
-
-      const res = await fetch(`${apiServer}/comments/${this.itemID}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "X-Token": document.cookie.split("=")[1],
-        },
-        body: JSON.stringify({ commentValue: this.commentValue })
-      })
-      const data = await res.json()
-      
-      if(data.message === "success") {
-        const newComment = {
-          commentID: data.commentID,
-          commentValue: this.commentValue,
-          commentDate: new Date(),
-          username: this.$store.state.username,
-        }
-
-        this.comments = [ newComment, ...this.comments ]
-        
-        this.showAddPopup = false
-        this.commentValue = ""
-        this.errors = {}
-      } else {
-        this.errors = data
-      }
+    addComment(newComment) {      
+      this.comments = [ newComment ,...this.comments ]
+      this.showAddPopup = false
     },
-
+    
     editComment(commentID, newComment) {      
       this.comments = this.comments.map(c => {
         if(c.commentID === commentID) {
@@ -165,9 +124,5 @@ export default {
     display: flex;
     align-items: center;
     justify-content: space-between;
-  }
-
-  h2, h3 {
-    margin-bottom: 1rem;
   }
 </style>

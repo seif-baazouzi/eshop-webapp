@@ -8,45 +8,25 @@
     <p>{{ comment }}</p>
     <DropDown
       v-if="$store.state.username === username"
-      @edit="showPopup = 'edit'"
-      @delete="showPopup = 'delete'"
+      @edit="popupName = 'edit'"
+      @delete="popupName = 'delete'"
     />
 
-    <Popup v-if="showPopup != null" @close="showPopup = null">
-      <div v-if="$store.state.isLogin && showPopup == 'edit'">
-        <h3 class="center">Edit Comment</h3>
-        <form @submit="handleEditSubmit($event)">
-          <Input
-            type="text"
-            label="Comment"
-            :value="commentValue"
-            :error="errors.commentValue"
-            @input="(value) => commentValue = value"
-          />
-          <button class="block blue">Submit</button>
-        </form>
-      </div>
+    <CommentPopups
+      v-if="popupName != null"
+      @close="popupName = null"
 
-      <div v-if="$store.state.isLogin && showPopup == 'delete'" class="center">
-        <h3>Delete this comment</h3>
-        <form @submit="handleDeleteSubmit($event)">
-          <button class="red">Delete</button>
-        </form>
-      </div>
-
-      <div v-else class="center">
-        <h2>You must login to checkout</h2>
-        <NuxtLink to="/login">
-          <button class="blue-outline">Login</button>
-        </NuxtLink>
-      </div>
-    </Popup>
+      :popupName="popupName"
+      :commentID="commentID"
+      :initialCommentValue="comment"
+      @edit="(newComment) => { $emit('edit', newComment); popupName = null }"
+      @delete="() => { $emit('delete'); popupName = null }"
+    />
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import { apiServer } from "../../config/config"
 
 export default Vue.extend({
   props: {
@@ -70,57 +50,9 @@ export default Vue.extend({
 
   data() {
     return {
-      showPopup: null,
-      commentValue: this.comment,
-      errors: {},
+      popupName: null,
     }
   },
-
-  methods: {
-    async handleEditSubmit(event) {
-      event.preventDefault()
-
-      const res = await fetch(`${apiServer}/comments/${this.commentID}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          "X-Token": document.cookie.split("=")[1],
-        },
-        body: JSON.stringify({ commentValue: this.commentValue })
-      })
-      const data = await res.json()
-      
-      if(data.message === "success") {
-        this.$emit("edit", this.commentValue)
-
-        this.showPopup = null
-        this.errors = {}
-      } else {
-        this.errors = data
-      }
-    },
-    
-    async handleDeleteSubmit(event) {
-      event.preventDefault()
-
-      const res = await fetch(`${apiServer}/comments/${this.commentID}`, {
-        method: "DELETE",
-        headers: {
-          "X-Token": document.cookie.split("=")[1],
-        },
-      })
-      const data = await res.json()
-      
-      if(data.message === "success") {
-        this.$emit("delete")
-
-        this.showPopup = null
-        this.errors = {}
-      } else {
-        this.errors = data
-      }
-    },
-  }
 })
 </script>
 
@@ -163,9 +95,5 @@ export default Vue.extend({
     line-height: 1.25;
     padding-top: .25rem;
     color: var(--dark-gray);
-  }
-
-  h2, h3 {
-    margin-bottom: 1rem;
   }
 </style>
