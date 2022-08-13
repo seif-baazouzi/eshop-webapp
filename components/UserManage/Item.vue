@@ -3,11 +3,7 @@
     <td class="img"><img :src="apiServer + '/images/' + image" /></td>
     <td class="name">
       <Rate :value="rate" />
-      <NuxtLink :to="'/shops/' + name">{{ name }}</NuxtLink>
-      <div class="links">
-        <NuxtLink class="link-item" :to="'/manage-shops/' + name">Items</NuxtLink>
-        <NuxtLink class="link-item" :to="'/manage-shops/carts/' + name">Carts</NuxtLink>
-      </div>
+      <NuxtLink :to="'/items/' + id">{{ name }}</NuxtLink>
     </td>
     <td class="btn">
       <button class="yellow-outline" @click="popupName = 'edit-image'">Edit Image</button>
@@ -19,14 +15,16 @@
       <button class="red-outline" @click="popupName = 'delete'">Delete</button>
     </td>
 
-    <UserManageShopPopups
+    <UserManageItemPopups
       v-if="popupName != null"
       @close="popupName = null"
     
       :popupName="popupName"
-      :initialShopName="name"
-      :initialShopDescription="description"
-      @edit="(newShop) => $emit('edit', newShop)"
+      :itemID="id"
+      :initialItemName="name"
+      :initialItemPrice="price"
+      :initialItemDescription="description"
+      @edit="(newItem) => $emit('edit', newItem)"
       @edit-image="(newImage) => $emit('edit-image', newImage)"
       @delete="() => $emit('delete')"
     />
@@ -40,8 +38,16 @@ import { apiServer } from "../../config/config"
 
 export default Vue.extend({
   props: {
+    id: {
+      type: Number,
+      required: true,
+    },
     name: {
       type: String,
+      required: true,
+    },
+    price: {
+      type: Number,
       required: true,
     },
     rate: {
@@ -95,20 +101,5 @@ export default Vue.extend({
   td.btn {
     width: 6rem;
     text-align: center;
-  }
-
-  .links {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: .5rem;
-  }
-
-  .links .link-item {
-    width: fit-content;
-    font-size: .75rem;
-    font-weight: bold;
-    color: var(--blue);
-    text-decoration: underline;
   }
 </style>
