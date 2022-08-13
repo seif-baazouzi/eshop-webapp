@@ -4,6 +4,7 @@
       <thead>
         <th>CartID</th>
         <th>Customer</th>
+        <th>Address</th>
         <th>Date</th>
         <th></th>
       </thead>
@@ -11,9 +12,10 @@
         <tr v-for="(cart) in carts" :key="cart.cartID">
           <td>{{ cart.cartID }}</td>
           <td>{{ cart.username }}</td>
-          <td>19/12/2012</td>
+          <td>{{ cart.address }}</td>
+          <td>{{ (new Date(cart.cartDate)).toDateString() }}</td>
           <td>
-            <NuxtLink to="#">view</NuxtLink>
+            <NuxtLink :to="'/manage-shops/carts/view/' + cart.cartID">view</NuxtLink>
           </td>
         </tr>
       </tbody>
