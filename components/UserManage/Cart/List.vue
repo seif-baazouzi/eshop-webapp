@@ -3,7 +3,7 @@
     <table>
       <thead>
         <th>CartID</th>
-        <th>Customer</th>
+        <th>{{ type === "user" ? "Shop" : "Customer" }}</th>
         <th>Address</th>
         <th>Date</th>
         <th></th>
@@ -11,11 +11,11 @@
       <tbody>
         <tr v-for="(cart) in carts" :key="cart.cartID">
           <td>{{ cart.cartID }}</td>
-          <td>{{ cart.username }}</td>
+          <td>{{ type === "user" ? cart.shopName : cart.username }}</td>
           <td>{{ cart.address }}</td>
           <td>{{ (new Date(cart.cartDate)).toDateString() }}</td>
           <td>
-            <NuxtLink :to="'/manage-shops/carts/view/' + cart.cartID">view</NuxtLink>
+            <NuxtLink :to="getCartLink(cart.cartID)">view</NuxtLink>
           </td>
         </tr>
       </tbody>
@@ -27,15 +27,28 @@
 import Vue from 'vue'
 export default Vue.extend({
   props: {
+    type: {
+      type: String,
+      default: "shop",
+    },
     shopName: {
       type: String,
-      required: true,
     },
     carts: {
       type: Array,
       required: true,
     },
   },
+
+  methods: {
+    getCartLink(cartID) {
+      if(this.type === "user") {
+        return `/carts/${cartID}`
+      }
+      
+      return `/manage-shops/carts/view/${cartID}`
+    },
+  }
 })
 </script>
 

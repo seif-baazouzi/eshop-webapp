@@ -1,6 +1,16 @@
 <template>
   <div>
     <NavBar />
+    
+    <div class="container">
+      <div class="header">
+        <h2>Carts List</h2>
+        <NuxtLink to="/carts/list" v-if="$store.state.isLogin">
+          <button class="blue-outline">My carts list</button>
+        </NuxtLink>
+      </div>
+    </div>
+    
     <div class="container" v-if="Object.keys(shopsCarts).length !== 0">
       <CartList
         v-for="(items, shopName) in shopsCarts"
@@ -40,3 +50,13 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  .header {
+    max-width: 768px;
+    margin: 0 auto 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+</style>
