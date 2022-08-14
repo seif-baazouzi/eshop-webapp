@@ -29,6 +29,12 @@ import { parseCookies } from "../../utils/cookies"
 export default {
   name: "ShopCartsPage",
   
+  head() {
+    return {
+      title: `Shop Carts List - E-shop`
+    }
+  },
+
   data() {
     return {
       selectedPage: (this.$route.query.page && !isNaN(this.$route.query.page)) ? parseInt(this.$route.query.page) : 1,

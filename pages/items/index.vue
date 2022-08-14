@@ -17,6 +17,12 @@ import { apiServer } from "../../config/config"
 export default {
   name: "ItemsPage",
   
+  head() {
+    return {
+      title: `Items - E-shop`
+    }
+  },
+
   data() {
     return {
       selectedPage: (this.$route.query.page && !isNaN(this.$route.query.page)) ? parseInt(this.$route.query.page) : 1,

@@ -20,6 +20,12 @@ import { apiServer } from "../../config/config"
 export default {
   name: "Item",
 
+  head() {
+    return {
+      title: `Item ${this.item.itemName} - E-shop`
+    }
+  },
+
   data() {
     return {
       item: {}

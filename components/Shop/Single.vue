@@ -1,6 +1,6 @@
 <template>
   <div class="shop">
-    <img :src="apiServer + '/images/' + image" alt="">
+    <img :src="apiServer + '/images/' + image" :alt="description">
     <div class="content">
       <Rate :value="rate" />
       <h2>{{ name }}</h2>

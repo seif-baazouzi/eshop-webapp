@@ -22,6 +22,12 @@ import { apiServer } from "../config/config"
 export default {
   name: "HomePage",
   
+  head() {
+    return {
+      title: "Home - E-shop"
+    }
+  },
+
   data() {
     return {
       items: [],

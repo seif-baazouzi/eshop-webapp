@@ -29,6 +29,14 @@
 
 <script lang="ts">
 export default {
+  name: "carts",
+
+  head() {
+    return {
+      title: `Carts - E-shop`
+    }
+  },
+
   data() {
     return {
       shopsCarts: {},

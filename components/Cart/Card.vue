@@ -1,7 +1,7 @@
 <template>
   <tr>
     <td>
-      <img :src="apiServer + '/images/' + image" alt="">
+      <img :src="apiServer + '/images/' + image" :alt="shopName">
     </td>
     <td class="name"><NuxtLink :to="'/items/' + itemID">{{ name }}</NuxtLink></td>
     <td class="price">{{ formatPrice(price) }} dt</td>

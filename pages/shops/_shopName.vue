@@ -24,6 +24,12 @@ import { apiServer } from "../../config/config"
 export default {
   name: "Shop",
 
+  head() {
+    return {
+      title: `Shop ${this.$route.params.shopName} - E-shop`
+    }
+  },
+
   data() {
     return {
       shop: {},

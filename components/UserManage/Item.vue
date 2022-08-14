@@ -1,6 +1,6 @@
 <template>
   <tr>
-    <td class="img"><img :src="apiServer + '/images/' + image" /></td>
+    <td class="img"><img :src="apiServer + '/images/' + image" :alt="name" /></td>
     <td class="name">
       <Rate :value="rate" />
       <NuxtLink :to="'/items/' + id">{{ name }}</NuxtLink>

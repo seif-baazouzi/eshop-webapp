@@ -1,6 +1,6 @@
 <template>
   <div class="card-container">
-    <img :src="apiServer + '/images/' + image">
+    <img :src="apiServer + '/images/' + image" :alt="name">
     <div class="content">
       <Rate :value="rate" />
       <NuxtLink :to="'/items/' + id">

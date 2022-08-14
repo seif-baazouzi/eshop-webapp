@@ -17,6 +17,12 @@ import { parseCookies } from "../../utils/cookies"
 export default {
   name: "ShopCartsPage",
   
+  head() {
+    return {
+      title: `Cart ${this.$route.params.cartID} - E-shop`
+    }
+  },
+
   data() {
     return {
       items: [],

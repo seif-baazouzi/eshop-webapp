@@ -13,7 +13,7 @@
         <tbody>
           <tr v-for="(item) in items" :key="item.cartItemID">
             <td>
-              <img :src="apiServer + '/images/' + item.itemImage" alt="">
+              <img :src="apiServer + '/images/' + item.itemImage" :alt="item.itemName">
             </td>
             <td class="name">{{ item.itemName }}</td>
             <td class="price">{{ formatPrice(item.itemPrice) }} dt</td>
