@@ -16,9 +16,9 @@
               <img :src="apiServer + '/images/' + item.itemImage" :alt="item.itemName">
             </td>
             <td class="name">{{ item.itemName }}</td>
-            <td class="price">{{ formatPrice(item.itemPrice) }} dt</td>
+            <td class="price">{{ formatPrice(item.itemPrice) }} {{ priceCurrency }}</td>
             <td>{{ item.amount }}</td>
-            <td>{{ formatPrice(item.itemPrice * item.amount) }}</td>
+            <td>{{ formatPrice(item.itemPrice * item.amount) }} {{ priceCurrency }}</td>
           </tr>
         </tbody>
       </table>
@@ -27,7 +27,7 @@
 </template>
 
 <script lang="ts">
-import { apiServer } from "../../../config/config"
+import { apiServer, priceCurrency } from "../../../config/config"
 import formatPrice from "../../../utils/format-price"
 
 export default {
@@ -44,6 +44,7 @@ export default {
 
   created() {
     this.apiServer = apiServer
+    this.priceCurrency = priceCurrency
     this.formatPrice = formatPrice
   },
 }

@@ -5,7 +5,7 @@
       <Rate :value="rate" />
       <h1>{{ name }}</h1>
       <span>by <NuxtLink :to="'/shops/' + shopName">{{ shopName }}</NuxtLink></span>
-      <div class="price">{{ formatPrice(price) }} dt</div>
+      <div class="price">{{ formatPrice(price) }} {{ priceCurrency }}</div>
       <div class="description">
         <h5>Description:</h5>
         <p>{{ description }}</p>
@@ -24,7 +24,7 @@
 </template>
 
 <script lang="ts">
-import { apiServer } from "../../config/config"
+import { apiServer, priceCurrency } from "../../config/config"
 import { parseCookies } from "../../utils/cookies"
 import formatPrice from "../../utils/format-price"
 
@@ -62,6 +62,7 @@ export default {
   
   created() {
     this.apiServer = apiServer
+    this.priceCurrency = priceCurrency
     this.formatPrice = formatPrice
   },
 

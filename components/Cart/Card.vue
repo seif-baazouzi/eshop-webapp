@@ -4,7 +4,7 @@
       <img :src="apiServer + '/images/' + image" :alt="shopName">
     </td>
     <td class="name"><NuxtLink :to="'/items/' + itemID">{{ name }}</NuxtLink></td>
-    <td class="price">{{ formatPrice(price) }} dt</td>
+    <td class="price">{{ formatPrice(price) }} {{ priceCurrency }}</td>
     <td>
       <ItemAddToCart
         :itemID="itemID"
@@ -17,7 +17,7 @@
 </template>
 
 <script lang="ts">
-import { apiServer } from "../../config/config"
+import { apiServer, priceCurrency } from "../../config/config"
 import formatPrice from "../../utils/format-price"
 
 export default {
@@ -38,6 +38,7 @@ export default {
 
   created() {
     this.apiServer = apiServer
+    this.priceCurrency = priceCurrency
     this.formatPrice = formatPrice
   },
 

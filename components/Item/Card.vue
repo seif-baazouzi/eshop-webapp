@@ -7,7 +7,7 @@
         <h3>{{ name }}</h3>
       </NuxtLink>
       <span>by <NuxtLink :to="'/shops/' + shopName">{{ shopName }}</NuxtLink></span>
-      <p>{{ formatPrice(price) }} dt</p>
+      <p>{{ formatPrice(price) }} {{ priceCurrency }}</p>
       <ItemAddToCart
         :itemID="id"
         :shopName="shopName"
@@ -19,7 +19,7 @@
 <script lang="ts">
 import Vue from 'vue'
 
-import { apiServer } from "../../config/config"
+import { apiServer, priceCurrency } from "../../config/config"
 import formatPrice from "../../utils/format-price"
 
 export default Vue.extend({
@@ -52,6 +52,7 @@ export default Vue.extend({
 
   created() {
     this.apiServer = apiServer
+    this.priceCurrency = priceCurrency
     this.formatPrice = formatPrice
   },
 })
