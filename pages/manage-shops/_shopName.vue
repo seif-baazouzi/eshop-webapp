@@ -10,7 +10,7 @@
       <Pagination
         :pages="pages"
         :selectedPage="selectedPage"
-        @set-selected-page="(page) => { $router.push(`/?page=${page}`); selectedPage = page }"
+        @set-selected-page="(page) => { $router.push(`?page=${page}`); selectedPage = page }"
       />
     </div>
   </div>
