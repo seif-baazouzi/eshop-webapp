@@ -1,6 +1,9 @@
 <template>
   <nav :class="{ active: scrollValue > 80 }">
-    <NuxtLink to="/" class="logo">E-shop</NuxtLink>
+    <NuxtLink to="/" class="logo">
+      <Logo size=".85rem" />
+      <span>E-shop</span>
+    </NuxtLink>
 
     <ul :class="{ hide: !isNavOpen }" @click="closeNav()" v-if="$store.state.isLogin === false">
       <li>
@@ -165,6 +168,11 @@ export default Vue.extend({
     letter-spacing: .075em;
     color: var(--blue);
     transition: color .3s ease-out;
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: .25rem;
   }
 
   .logo:hover {
