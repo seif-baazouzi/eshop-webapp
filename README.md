@@ -8,3 +8,7 @@ This is an web interface for the e-shop REST API [https://gitlab.com/seif-projec
 $ npm i
 $ npm run dev
 ```
+
+# Used Icons
+
+- https://www.reshot.com/free-svg-icons/item/shopping-bag-746ADUHMLG/
