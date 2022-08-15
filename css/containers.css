@@ -1,10 +1,15 @@
 .message-container {
-  margin: 5rem 0;
+  margin: 3rem 0;
 }
 
 .message-container h1 {
   font-size: 3rem;
   text-align: center;
+}
+
+.message-container svg {
+  display: block;
+  margin: 0 auto 2rem;
 }
 
 .container {

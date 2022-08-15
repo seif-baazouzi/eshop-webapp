@@ -4,7 +4,7 @@
       <h3>{{ shopName }} Items List</h3>
       <button class="blue" @click="showPopup = true">Add new item</button>
     </div>
-    <div class="table">
+    <div v-if="items.length > 0" class="table">
       <table>
         <thead>
           <th>Item Image</th>
@@ -30,6 +30,11 @@
           />
         </tbody>
       </table>
+    </div>
+
+    <div v-else class="message-container">
+      <ItemsIcon />
+      <h1>There is no items yet!</h1>
     </div>
 
     <UserManageItemPopups

@@ -4,7 +4,7 @@
       <h3>Shops List</h3>
       <button class="blue" @click="showPopup = true">Add new shop</button>
     </div>
-    <div class="table">
+    <div v-if="shops.length > 0" class="table">
       <table>
         <thead>
           <th>Shop Image</th>
@@ -28,6 +28,11 @@
           />
         </tbody>
       </table>
+    </div>
+
+    <div v-else class="message-container">
+      <ShopIcon />
+      <h1>There is no shops yet!</h1>
     </div>
 
     <UserManageShopPopups

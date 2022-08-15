@@ -17,6 +17,7 @@
     </div>
 
     <div class="message-container" v-else>
+      <CartIcon />
       <h1>There is no carts yet!</h1>
     </div>
   </div>

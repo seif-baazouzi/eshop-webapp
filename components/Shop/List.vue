@@ -20,6 +20,7 @@
     </div>
 
     <div v-else class="message-container">
+      <ShopIcon />
       <h1>There is no shops yet!</h1>
     </div>
   </div>

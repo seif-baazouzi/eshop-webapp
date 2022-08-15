@@ -23,6 +23,7 @@
     </div>
 
     <div v-else class="message-container">
+      <ItemsIcon />
       <h1>There is no items yet!</h1>
     </div>
   </div>
