@@ -3,6 +3,7 @@
     <NavBar/>
     
     <ShopSingle
+      v-if="Object.keys(shop).length > 0"
       :name="shop.shopName"
       :image="shop.shopImage"
       :description="shop.shopDescription"

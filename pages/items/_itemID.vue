@@ -2,6 +2,7 @@
   <div>
     <NavBar/>
     <ItemSingle
+      v-if="Object.keys(item).length > 0"
       :id="item.itemID"
       :name="item.itemName"
       :image="item.itemImage"
