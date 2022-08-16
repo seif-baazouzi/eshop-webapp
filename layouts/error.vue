@@ -11,6 +11,7 @@
     </div>
 
     <div class="center" v-else>
+      <ErrorIcon />
       <h1>Error {{ error.statusCode }}</h1>
       <NuxtLink to="/">
         <button class="blue-outline">Go Home</button>
