@@ -19,6 +19,15 @@
   </div>
 </template>
 
+<script lang="ts">
+import Vue from 'vue'
+export default Vue.extend({
+  name: "ErrorPage",
+  
+  props: [ 'error' ],
+})
+</script>
+
 <style scoped>
   .center {
     padding: 1rem;

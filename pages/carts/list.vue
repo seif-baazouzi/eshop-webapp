@@ -39,7 +39,7 @@ export default Vue.extend({
   },
 
   data() {
-    const page = parseInt(this.$route.query.page.toString())
+    const page = parseInt(this.$route.query.page?.toString())
     
     return {
       selectedPage: (this.$route.query.page && !isNaN(page)) ? page : 1,
