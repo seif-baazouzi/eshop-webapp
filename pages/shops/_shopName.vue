@@ -46,6 +46,10 @@ export default Vue.extend({
       apiServer: apiServer,
     }
   },
+  
+  watch: {
+    selectedPage: "$fetch"
+  },
 
   async fetch() {
     let res = await fetch(`${apiServer}/shops/${this.$route.params.shopName}`)
@@ -53,7 +57,7 @@ export default Vue.extend({
     
     this.shop = shop
 
-    res = await fetch(`${apiServer}/items/shop/${this.$route.params.shopName}`)
+    res = await fetch(`${apiServer}/items/shop/${this.$route.params.shopName}?page=${this.selectedPage}`)
     const { items, pages } = await res.json()
     
     this.items = items
