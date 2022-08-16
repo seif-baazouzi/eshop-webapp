@@ -51,6 +51,10 @@ $ npm run dev
 
 ![cart items list page](screenshots/cart-items-list.png)
 
+# Dark Mode
+
+![cart items list page](screenshots/dark-mode.png)
+
 # Used Icons
 
 - https://www.reshot.com/free-svg-icons/item/shopping-bag-746ADUHMLG/

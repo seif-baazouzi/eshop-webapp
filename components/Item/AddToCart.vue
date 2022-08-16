@@ -115,6 +115,7 @@ export default Vue.extend({
     padding: .25rem;
     text-align: center;
     font-size: .75rem;
+    background: var(--white);
 
     -webkit-appearance: none;
     -moz-appearance: textfield;

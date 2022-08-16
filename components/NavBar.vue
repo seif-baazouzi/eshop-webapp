@@ -5,92 +5,96 @@
       <span>E-shop</span>
     </NuxtLink>
 
-    <ul :class="{ hide: !isNavOpen }" @click="closeNav()" v-if="$store.state.isLogin === false">
-      <li>
-        <NuxtLink
-          to="/"
-          :class="{ active: $router.currentRoute.path === '/' }"
-          >Home
-        </NuxtLink>
-      </li>
-      <li>
-        <NuxtLink
-          to="/items"
-          :class="{ active: $router.currentRoute.path === '/items' }"
-          >Items
-        </NuxtLink>
-      </li>
-      <li>
-        <NuxtLink
-          to="/shops"
-          :class="{ active: $router.currentRoute.path === '/shops' }"
-          >Shops
-        </NuxtLink>
-      </li>
-      <li>
-        <NuxtLink
-          to="/carts"
-          :class="{ active: $router.currentRoute.path === '/carts' }"
-          >Carts
-        </NuxtLink>
-      </li>
+    <div class="right-side">
+      <ul :class="{ hide: !isNavOpen }" @click="closeNav()" v-if="$store.state.isLogin === false">
+        <li>
+          <NuxtLink
+            to="/"
+            :class="{ active: $router.currentRoute.path === '/' }"
+            >Home
+          </NuxtLink>
+        </li>
+        <li>
+          <NuxtLink
+            to="/items"
+            :class="{ active: $router.currentRoute.path === '/items' }"
+            >Items
+          </NuxtLink>
+        </li>
+        <li>
+          <NuxtLink
+            to="/shops"
+            :class="{ active: $router.currentRoute.path === '/shops' }"
+            >Shops
+          </NuxtLink>
+        </li>
+        <li>
+          <NuxtLink
+            to="/carts"
+            :class="{ active: $router.currentRoute.path === '/carts' }"
+            >Carts
+          </NuxtLink>
+        </li>
 
-      <li><div class="spacer"></div></li>
+        <li><div class="spacer"></div></li>
 
-      <NuxtLink to="/login" class="vav-btn">
-        <button class="blue">Login</button>
-      </NuxtLink>
-      <NuxtLink to="/signup" class="vav-btn">
-        <button class="blue-outline">Signup</button>
-      </NuxtLink>
-    </ul>
+        <NuxtLink to="/login" class="vav-btn">
+          <button class="blue">Login</button>
+        </NuxtLink>
+        <NuxtLink to="/signup" class="vav-btn">
+          <button class="blue-outline">Signup</button>
+        </NuxtLink>
+      </ul>
 
-    <ul :class="{ hide: !isNavOpen }" @click="closeNav()" v-else>
-      <li>
-        <NuxtLink
-          to="/"
-          :class="{ active: $router.currentRoute.path === '/' }"
-          >Home
-        </NuxtLink>
-      </li>
-      <li>
-        <NuxtLink
-          to="/items"
-          :class="{ active: $router.currentRoute.path === '/items' }"
-          >Items
-        </NuxtLink>
-      </li>
-      <li>
-        <NuxtLink
-          to="/shops"
-          :class="{ active: $router.currentRoute.path === '/shops' }"
-          >Shops
-        </NuxtLink>
-      </li>
-      <li>
-        <NuxtLink
-          to="/carts"
-          :class="{ active: $router.currentRoute.path === '/carts' }"
-          >Carts
-        </NuxtLink>
-      </li>
-      <li>
-        <NuxtLink
-          to="/manage-shops"
-          :class="{ active: $router.currentRoute.path === '/manage-shops' }"
-          >ManageShops
-        </NuxtLink>
-      </li>
+      <ul :class="{ hide: !isNavOpen }" @click="closeNav()" v-else>
+        <li>
+          <NuxtLink
+            to="/"
+            :class="{ active: $router.currentRoute.path === '/' }"
+            >Home
+          </NuxtLink>
+        </li>
+        <li>
+          <NuxtLink
+            to="/items"
+            :class="{ active: $router.currentRoute.path === '/items' }"
+            >Items
+          </NuxtLink>
+        </li>
+        <li>
+          <NuxtLink
+            to="/shops"
+            :class="{ active: $router.currentRoute.path === '/shops' }"
+            >Shops
+          </NuxtLink>
+        </li>
+        <li>
+          <NuxtLink
+            to="/carts"
+            :class="{ active: $router.currentRoute.path === '/carts' }"
+            >Carts
+          </NuxtLink>
+        </li>
+        <li>
+          <NuxtLink
+            to="/manage-shops"
+            :class="{ active: $router.currentRoute.path === '/manage-shops' }"
+            >ManageShops
+          </NuxtLink>
+        </li>
 
-      <li><div class="spacer"></div></li>
+        <li><div class="spacer"></div></li>
 
-      <button class="blue" @click="logout()">Logout</button>
-    </ul>
+        <button class="blue" @click="logout()">Logout</button>
+      </ul>
 
-    <div class="burger" :class="{ x: isNavOpen }" @click="toggleNav()">
-      <div></div>
-      <div></div>
-      <div></div>
+      <DarkModeSwitcher />
+
+      <div class="burger" :class="{ x: isNavOpen }" @click="toggleNav()">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
     </div>
   </nav>
 </template>
@@ -179,6 +183,13 @@ export default Vue.extend({
     color: var(--dark-gray);
   }
 
+  .right-side {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+  }
+
   ul {
     width: 100%;
     padding-bottom: .75rem;
@@ -224,7 +235,7 @@ export default Vue.extend({
   }
 
   ul li .spacer {
-    width: .5rem;
+    min-width: .5rem;
   }
 
   .burger {

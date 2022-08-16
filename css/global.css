@@ -12,7 +12,7 @@
 
 /* colors */
 
-:root {
+body {
   --white: #fff;
   --red: #ca3e47;
   --black: #070d18;
@@ -21,16 +21,31 @@
   --dark-gray: #363636;
   --light-gray: #ededed;
   --shadow: 0 .025rem .25rem rgba(0, 0, 0, .1);
+
+  transition: background 500ms ease-out;
+}
+
+body.dark {
+  --white: #2e3440;
+  --red: #bf616a;
+  --black: #eceff4;
+  --blue: #5e81ac;
+  --yellow: #ebcb8b;
+  --dark-gray: #ededed;
+  --light-gray: #434c5e;
+  --shadow: 0 .025rem .25rem rgba(0, 0, 0, .1);
 }
 
 /* reset styles */
 
-input, button {
+input, button, textarea {
   border: none;
   outline: none;
+  color: var(--black);
 }
 
 a {
+  color: var(--blue);
   cursor: pointer;
   text-decoration: none;
 }
