@@ -29,7 +29,9 @@
 </template>
 
 <script lang="ts">
-export default {
+import Vue from 'vue'
+
+export default Vue.extend({
   name: "carts",
 
   head() {
@@ -52,12 +54,12 @@ export default {
   },
 
   methods: {
-    deleteShopCart(shopName) {
-      delete this.shopsCarts[shopName]
+    deleteShopCart(shopName: string) {
+      delete (this.shopsCarts as any)[shopName]
       this.$forceUpdate()
     }
   }
-}
+})
 </script>
 
 <style scoped>

@@ -97,7 +97,7 @@ export default Vue.extend({
   },
 
   methods: {
-    async handleAddSubmit(event) {
+    async handleAddSubmit(event: { preventDefault: Function }) {
       event.preventDefault()
 
       const cookies = parseCookies(document.cookie)
@@ -125,7 +125,7 @@ export default Vue.extend({
       }
     },
 
-    async handleEditSubmit(event) {
+    async handleEditSubmit(event: { preventDefault: Function }) {
       event.preventDefault()
 
       const cookies = parseCookies(document.cookie)
@@ -153,7 +153,7 @@ export default Vue.extend({
       }
     },
 
-    async handleEditImageSubmit(event) {
+    async handleEditImageSubmit(event: { preventDefault: Function }) {
       event.preventDefault()
 
       if(!this.shopImage[0]) return
@@ -181,7 +181,7 @@ export default Vue.extend({
       }
     },
 
-    async handleDeleteSubmit(event) {
+    async handleDeleteSubmit(event: { preventDefault: Function }) {
       event.preventDefault()
 
       const cookies = parseCookies(document.cookie)

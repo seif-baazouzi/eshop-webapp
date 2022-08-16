@@ -42,9 +42,11 @@
 </template>
 
 <script lang="ts">
+import Vue from "vue"
+
 import { apiServer } from "../../config/config"
 
-export default {
+export default Vue.extend({
   props: {
     itemID: {
       type: Number,
@@ -56,7 +58,7 @@ export default {
     return {
       showAddPopup: false,
 
-      comments: [],
+      comments: [] as any[],
       commentsPage: 1,
       loadMore: true,
     }
@@ -76,12 +78,12 @@ export default {
   },
 
   methods: {
-    addComment(newComment) {      
+    addComment(newComment: any) {      
       this.comments = [ newComment ,...this.comments ]
       this.showAddPopup = false
     },
     
-    editComment(commentID, newComment) {      
+    editComment(commentID: number, newComment: any) {      
       this.comments = this.comments.map(c => {
         if(c.commentID === commentID) {
           c.commentValue = newComment
@@ -91,7 +93,7 @@ export default {
       })
     },
 
-    deleteComment(commentID) {      
+    deleteComment(commentID: number) {
       this.comments = this.comments.filter(c => c.commentID != commentID)
     },
 
@@ -108,7 +110,7 @@ export default {
       }
     }
   },
-}
+})
 </script>
 
 <style scoped>

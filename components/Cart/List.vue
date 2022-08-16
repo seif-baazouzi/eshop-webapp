@@ -56,9 +56,11 @@
 </template>
 
 <script lang="ts">
+import Vue from "vue"
+
 import { apiServer } from "../../config/config"
 
-export default {
+export default Vue.extend({
   props: {
     shopName: {
       type: String,
@@ -80,12 +82,12 @@ export default {
   },
 
   methods: {
-    deleteItemFromCart(itemID) {
+    deleteItemFromCart(itemID: number) {
       delete this.itemsList[itemID]
       this.$forceUpdate()
     },
 
-    async handleCheckout(event) {
+    async handleCheckout(event: { preventDefault: Function }) {
       event.preventDefault()
 
       const items = []
@@ -108,7 +110,7 @@ export default {
       const data = await res.json()
       
       if(data.message === "success") {
-        let cartsList = JSON.parse(localStorage.getItem("carts-list"))
+        let cartsList = JSON.parse(localStorage.getItem("carts-list") || "[]")
 
         delete cartsList[this.shopName]
         this.$emit("zero-items", this.shopName)
@@ -122,7 +124,7 @@ export default {
       }
     }
   }
-}
+})
 </script>
 
 <style scoped>

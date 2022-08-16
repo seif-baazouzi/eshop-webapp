@@ -50,11 +50,16 @@ export default Vue.extend({
     },
   },
 
-  created() {
-    this.apiServer = apiServer
-    this.priceCurrency = priceCurrency
-    this.formatPrice = formatPrice
+  data() {
+    return {
+      apiServer: apiServer,
+      priceCurrency: priceCurrency,
+    }
   },
+
+  methods: {
+    formatPrice: formatPrice,
+  }
 })
 </script>
 

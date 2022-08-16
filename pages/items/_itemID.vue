@@ -16,25 +16,25 @@
 </template>
 
 <script lang="ts">
+import Vue from 'vue'
+
 import { apiServer } from "../../config/config"
 
-export default {
+export default Vue.extend({
   name: "Item",
 
   head() {
     return {
-      title: `Item ${this.item.itemName} - E-shop`
+      title: `Item ${(this as any).item.itemName} - E-shop`
     }
   },
 
   data() {
     return {
-      item: {}
-    }
-  },
+      item: {},
 
-  created() {
-    this.apiServer = apiServer
+      apiServer: apiServer,
+    }
   },
 
   async fetch() {    
@@ -43,5 +43,5 @@ export default {
     
     this.item = item
   },
-}
+})
 </script>

@@ -61,11 +61,9 @@ export default Vue.extend({
   data() {
     return {
       popupName: null,
-    }
-  },
 
-  created() {
-    this.apiServer = apiServer
+      apiServer: apiServer,
+    }
   },
 })
 </script>

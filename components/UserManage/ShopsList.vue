@@ -63,20 +63,18 @@ export default Vue.extend({
   data() {
     return {
       showPopup: false,
+
+      apiServer: apiServer,
     }
   },
 
-  created() {
-    this.apiServer = apiServer
-  },
-
   methods: {
-    addShop(newShop) {
-      this.shops = [ newShop, ...this.shops ]
+    addShop(newShop: any) {
+      (this.shops as any) = [ newShop, ...this.shops ]
     },
 
-    editShop(oldShopName, { shopName, shopDescription }) {
-      this.$emit('change', this.shops.map(s => {
+    editShop(oldShopName: string, { shopName, shopDescription }: any) {
+      this.$emit('change', this.shops.map((s: any) => {
         if(s.shopName === oldShopName) {
           s.shopName = shopName
           s.shopDescription = shopDescription
@@ -86,8 +84,8 @@ export default Vue.extend({
       }))
     },
 
-    editShopImage(shopName, image) {
-      this.$emit('change', this.shops.map(s => {
+    editShopImage(shopName: string, image: string) {
+      this.$emit('change', this.shops.map((s: any) => {
         if(s.shopName === shopName) {
           s.shopImage = image
         }
@@ -96,8 +94,8 @@ export default Vue.extend({
       }))
     },
 
-    deleteShop(shopName) {
-      this.$emit('change', this.shops.filter(s => s.shopName != shopName))
+    deleteShop(shopName: string) {
+      this.$emit('change', this.shops.filter((s: any) => s.shopName != shopName))
     },
   }
 })

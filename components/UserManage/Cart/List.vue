@@ -41,7 +41,7 @@ export default Vue.extend({
   },
 
   methods: {
-    getCartLink(cartID) {
+    getCartLink(cartID: number) {
       if(this.type === "user") {
         return `/carts/${cartID}`
       }

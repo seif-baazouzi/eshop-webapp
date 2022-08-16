@@ -65,7 +65,7 @@ export default Vue.extend({
         newList.push(this.pages)
       }
 
-      this.pagesList = newList
+      (this.pagesList as number[]) = newList
     }
   }
 })

@@ -71,20 +71,18 @@ export default Vue.extend({
   data() {
     return {
       showPopup: false,
+
+      apiServer: apiServer,
     }
   },
 
-  created() {
-    this.apiServer = apiServer
-  },
-
   methods: {
-    addItem(newItem) {      
+    addItem(newItem: any) {      
       this.$emit('change', [ newItem, ...this.items ])
     },
 
-    editItem(oldItemID, { itemName, itemPrice, itemDescription }) {
-      this.$emit('change', this.items.map(i => {
+    editItem(oldItemID: number, { itemName, itemPrice, itemDescription }: any) {
+      this.$emit('change', this.items.map((i: any) => {
         if(i.itemID === oldItemID) {
           i.itemName = itemName
           i.itemPrice = itemPrice
@@ -95,8 +93,8 @@ export default Vue.extend({
       }))
     },
 
-    editItemImage(itemID, image) {      
-      this.$emit('change', this.items.map(i => {
+    editItemImage(itemID: number, image: string) {      
+      this.$emit('change', this.items.map((i: any) => {
         if(i.itemID === itemID) {
           i.itemImage = image
         }
@@ -105,8 +103,8 @@ export default Vue.extend({
       }))
     },
 
-    deleteItem(itemID) {
-      this.$emit('change', this.items.filter(i => i.itemID != itemID))
+    deleteItem(itemID: number) {
+      this.$emit('change', this.items.filter((i: any) => i.itemID != itemID))
     },
   }
 })

@@ -19,10 +19,12 @@
 </template>
 
 <script lang="ts">
+import Vue from "vue"
+
 import { apiServer } from "../../config/config"
 import { parseCookies } from "../../utils/cookies"
 
-export default {
+export default Vue.extend({
   props: {
     name: {
       type: String,
@@ -42,18 +44,16 @@ export default {
     },
   },
 
-  created() {
-    this.apiServer = apiServer
-  },
-
   data() {
     return {
       rateValue: 0,
+
+      apiServer: apiServer,
     }
   },
 
   methods: {
-    editRate(newRate) {
+    editRate(newRate: number) {
       const rawCookie = this.$nuxt?.context?.req?.headers.cookie || document.cookie || ""
       const cookies = parseCookies(rawCookie)
 
@@ -87,7 +87,7 @@ export default {
     
     this.rateValue = rate
   },
-}
+})
 </script>
 
 <style scoped>

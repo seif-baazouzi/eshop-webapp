@@ -31,8 +31,10 @@ export default Vue.extend({
     },
   },
 
-  created() {
-    this.apiServer = apiServer
+  data() {
+    return {
+      apiServer: apiServer
+    }
   },
 })
 </script>

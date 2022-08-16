@@ -75,7 +75,7 @@ export default Vue.extend({
   },
 
   methods: {
-    async handleAddSubmit(event) {
+    async handleAddSubmit(event: { preventDefault: Function }) {
       event.preventDefault()
 
       const res = await fetch(`${apiServer}/comments/${this.itemID}`, {
@@ -103,7 +103,7 @@ export default Vue.extend({
       }
     },
 
-    async handleEditSubmit(event) {
+    async handleEditSubmit(event: { preventDefault: Function }) {
       event.preventDefault()
 
       const res = await fetch(`${apiServer}/comments/${this.commentID}`, {
@@ -124,7 +124,7 @@ export default Vue.extend({
       }
     },
     
-    async handleDeleteSubmit(event) {
+    async handleDeleteSubmit(event: { preventDefault: Function }) {
       event.preventDefault()
 
       const res = await fetch(`${apiServer}/comments/${this.commentID}`, {

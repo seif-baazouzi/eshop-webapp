@@ -124,7 +124,7 @@ export default Vue.extend({
   },
 
   methods: {
-    async handleAddSubmit(event) {
+    async handleAddSubmit(event: { preventDefault: Function }) {
       event.preventDefault()
 
       const cookies = parseCookies(document.cookie)
@@ -137,7 +137,7 @@ export default Vue.extend({
         },
         body: JSON.stringify({
           itemName: this.itemName,
-          itemPrice: parseInt(this.itemPrice),
+          itemPrice: parseInt(this.itemPrice.toString()),
           itemDescription: this.itemDescription,
         })
       })
@@ -147,7 +147,7 @@ export default Vue.extend({
         this.$emit("add", {
           itemID: data.itemID,
           itemName: this.itemName,
-          itemPrice: parseInt(this.itemPrice),
+          itemPrice: parseInt(this.itemPrice.toString()),
           itemDescription: this.itemDescription
         })
         this.$emit("close")
@@ -158,7 +158,7 @@ export default Vue.extend({
       }
     },
 
-    async handleEditSubmit(event) {
+    async handleEditSubmit(event: { preventDefault: Function }) {
       event.preventDefault()
 
       const cookies = parseCookies(document.cookie)
@@ -171,7 +171,7 @@ export default Vue.extend({
         },
         body: JSON.stringify({
           itemName: this.itemName,
-          itemPrice: parseInt(this.itemPrice),
+          itemPrice: parseInt(this.itemPrice.toString()),
           itemDescription: this.itemDescription,
         })
       })
@@ -181,7 +181,7 @@ export default Vue.extend({
         this.$emit("edit", {
           itemID: data.itemID,
           itemName: this.itemName,
-          itemPrice: parseInt(this.itemPrice),
+          itemPrice: parseInt(this.itemPrice.toString()),
           itemDescription: this.itemDescription
         })
         this.$emit("close")
@@ -192,7 +192,7 @@ export default Vue.extend({
       }
     },
 
-    async handleEditImageSubmit(event) {
+    async handleEditImageSubmit(event: { preventDefault: Function }) {
       event.preventDefault()
 
       if(!this.itemImage[0]) return
@@ -220,7 +220,7 @@ export default Vue.extend({
       }
     },
 
-    async handleDeleteSubmit(event) {
+    async handleDeleteSubmit(event: { preventDefault: Function }) {
       event.preventDefault()
 
       const cookies = parseCookies(document.cookie)

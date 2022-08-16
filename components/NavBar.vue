@@ -111,8 +111,6 @@ export default Vue.extend({
   },
 
   created() {
-    this.clearCookies = clearCookies
-
     globalThis?.window?.addEventListener("scroll", this.handleScroll)
   },
   destroyed() {
@@ -120,6 +118,8 @@ export default Vue.extend({
   },
 
   methods: {
+    clearCookies: clearCookies,
+
     toggleNav() {
       this.isNavOpen = !this.isNavOpen
     },

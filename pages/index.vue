@@ -13,9 +13,11 @@
 </template>
 
 <script lang="ts">
+import Vue from 'vue'
+
 import { apiServer } from "../config/config"
 
-export default {
+export default Vue.extend({
   name: "HomePage",
   
   head() {
@@ -46,6 +48,6 @@ export default {
     
     this.shops = shops.slice(0, 5)
   },
-}
+})
 
 </script>

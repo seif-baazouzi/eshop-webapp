@@ -24,11 +24,13 @@
 </template>
 
 <script lang="ts">
+import Vue from "vue"
+
 import { apiServer, priceCurrency } from "../../config/config"
 import { parseCookies } from "../../utils/cookies"
 import formatPrice from "../../utils/format-price"
 
-export default {
+export default Vue.extend({
   props: {
     id: {
       type: Number,
@@ -59,21 +61,20 @@ export default {
       required: true  
     }
   },
-  
-  created() {
-    this.apiServer = apiServer
-    this.priceCurrency = priceCurrency
-    this.formatPrice = formatPrice
-  },
 
   data() {
     return {
       rateValue: 0,
+    
+      apiServer: apiServer,
+      priceCurrency: priceCurrency,
     }
   },
 
   methods: {
-    editRate(newRate) {
+    formatPrice: formatPrice,
+    
+    editRate(newRate: number) {
       const rawCookie = this.$nuxt?.context?.req?.headers.cookie || document.cookie || ""
       const cookies = parseCookies(rawCookie)
 
@@ -107,7 +108,7 @@ export default {
     
     this.rateValue = rate
   },
-}
+})
 </script>
 
 <style scoped>

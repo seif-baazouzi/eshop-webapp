@@ -11,10 +11,12 @@
 </template>
 
 <script lang="ts">
+import Vue from 'vue'
+
 import { apiServer } from "../../../../config/config"
 import { parseCookies } from "../../../../utils/cookies"
 
-export default {
+export default Vue.extend({
   name: "ShopCartsPage",
   
   head() {
@@ -42,7 +44,7 @@ export default {
     
     this.items = cartItems
   },
-}
+})
 </script>
 
 <style scoped>

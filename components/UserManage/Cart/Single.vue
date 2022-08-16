@@ -27,10 +27,12 @@
 </template>
 
 <script lang="ts">
+import Vue from "vue"
+
 import { apiServer, priceCurrency } from "../../../config/config"
 import formatPrice from "../../../utils/format-price"
 
-export default {
+export default Vue.extend({
   props: {
     cartID: {
       type: Number,
@@ -42,12 +44,17 @@ export default {
     },
   },
 
-  created() {
-    this.apiServer = apiServer
-    this.priceCurrency = priceCurrency
-    this.formatPrice = formatPrice
+  data() {
+    return {
+      apiServer: apiServer,
+      priceCurrency: priceCurrency,
+    }
   },
-}
+
+  methods: {
+    formatPrice: formatPrice,
+  }
+})
 </script>
 
 <style scoped>

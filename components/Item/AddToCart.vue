@@ -42,18 +42,18 @@ export default Vue.extend({
       }
 
       // get shop cart items list
-      if(cartsList[this.shopName] == null) {
-        cartsList[this.shopName] = {}
+      if((cartsList as any)[this.shopName] == null) {
+        (cartsList as any)[this.shopName] = {}
       }
 
       // get item amount
-      if(cartsList[this.shopName][this.itemID] != null) {
-        this.amount = cartsList[this.shopName][this.itemID]
+      if((cartsList as any)[this.shopName][this.itemID] != null) {
+        this.amount = (cartsList as any)[this.shopName][this.itemID]
       }
   },
 
   methods: {
-    setItemAmounts(amount) {
+    setItemAmounts(amount: number) {
       if(amount < 0) return 
       
       let cartsList = {}
@@ -65,26 +65,26 @@ export default Vue.extend({
       }
 
       // get shop cart items list
-      if(cartsList[this.shopName] == null) {
-        cartsList[this.shopName] = {}
+      if((cartsList as any)[this.shopName] == null) {
+        (cartsList as any)[this.shopName] = {}
       }
 
       // set item amount
-      cartsList[this.shopName][this.itemID] = amount
+      (cartsList as any)[this.shopName][this.itemID] = amount
       this.amount = amount
       
       // remove items that has zero amount
-      for(let itemID in cartsList[this.shopName]) {
-        if(cartsList[this.shopName][itemID] == 0) {
-          delete cartsList[this.shopName][itemID]
+      for(let itemID in (cartsList as any)[this.shopName]) {
+        if((cartsList as any)[this.shopName][itemID] == 0) {
+          delete (cartsList as any)[this.shopName][itemID]
           this.$emit("zero-amount", itemID)
         }
       }
 
       // remove shop cart when there is no items in it
       for(let shopName in cartsList) {
-        if(Object.keys(cartsList[shopName]).length === 0) {
-          delete cartsList[this.shopName]
+        if(Object.keys((cartsList as any)[this.shopName]).length === 0) {
+          delete (cartsList as any)[this.shopName]
           this.$emit("zero-items", shopName)
         }
       }

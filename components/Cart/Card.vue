@@ -17,10 +17,12 @@
 </template>
 
 <script lang="ts">
+import Vue from "vue"
+
 import { apiServer, priceCurrency } from "../../config/config"
 import formatPrice from "../../utils/format-price"
 
-export default {
+export default Vue.extend({
   props: {
     itemID: {
       type: String,
@@ -36,17 +38,14 @@ export default {
     },
   },
 
-  created() {
-    this.apiServer = apiServer
-    this.priceCurrency = priceCurrency
-    this.formatPrice = formatPrice
-  },
-
   data() {
     return {
       name: "",
       price: 0,
       image: "",
+
+      apiServer: apiServer,
+      priceCurrency: priceCurrency,
     }
   },
 
@@ -57,8 +56,12 @@ export default {
     this.name = item.itemName
     this.price = item.itemPrice
     this.image = item.itemImage
+  },
+
+  methods: {
+    formatPrice: formatPrice,
   }
-}
+})
 </script>
 
 <style scoped>
