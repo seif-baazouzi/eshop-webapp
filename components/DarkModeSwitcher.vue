@@ -12,12 +12,12 @@ export default Vue.extend({
   },
   
   mounted() {
-    const colorMode = localStorage.getItem("color-mode")
+    const colorMode = localStorage.getItem("color-mode") || "light"
     this.setMode(colorMode)
   },
 
   methods: {
-    setMode(mode) {
+    setMode(mode: string) {
       this.colorMode = mode
       localStorage.setItem("color-mode", mode)
 
