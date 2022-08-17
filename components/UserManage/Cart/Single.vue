@@ -30,6 +30,7 @@
 import Vue from "vue"
 
 import { apiServer, priceCurrency } from "../../../config/config"
+import { parseCookies } from "../../../utils/cookies"
 import formatPrice from "../../../utils/format-price"
 
 export default Vue.extend({
@@ -38,6 +39,7 @@ export default Vue.extend({
       type: Number,
       required: true,
     },
+    isStore: Boolean,
     items: {
       type: Array,
       required: true,
@@ -48,6 +50,20 @@ export default Vue.extend({
     return {
       apiServer: apiServer,
       priceCurrency: priceCurrency,
+    }
+  },
+
+  async fetch() {
+    if(this.isStore) {
+      const rawCookie = this.$nuxt?.context?.req?.headers.cookie || document.cookie || ""
+      const cookies = parseCookies(rawCookie)
+
+      fetch(`${this.apiServer}/carts/${this.cartID}/view`, {
+        method: "PUT",
+        headers: {
+          "X-Token": cookies.token,
+        },
+      })
     }
   },
 

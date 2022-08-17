@@ -4,6 +4,7 @@
     <div class="container">
       <UserManageCartSingle
         :cartID="parseInt($route.params.cartID)"
+        :isStore="true"
         :items="items"
       />
     </div>
@@ -29,10 +30,6 @@ export default Vue.extend({
     return {
       items: [],
     }
-  },
-
-  mounted() {
-    if(globalThis?.window != null) this.$nextTick(() => this.$nuxt.$loading.start())
   },
 
   async fetch() {
