@@ -38,12 +38,16 @@ export default Vue.extend({
     selectedPage: "$fetch"
   },
 
-  async fetch() {    
+  async fetch() {
+    this.$nextTick(() => this.$nuxt.$loading?.start())
+    
     const res = await fetch(`${apiServer}/shops?page=${this.selectedPage}`)
     const { shops, pages } = await res.json()
     
     this.shops = shops
     this.pages = pages
+
+    this.$nuxt.$loading?.finish()
   },
 })
 

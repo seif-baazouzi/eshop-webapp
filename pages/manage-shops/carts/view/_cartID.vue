@@ -31,7 +31,13 @@ export default Vue.extend({
     }
   },
 
+  mounted() {
+    if(globalThis?.window != null) this.$nextTick(() => this.$nuxt.$loading.start())
+  },
+
   async fetch() {
+    this.$nextTick(() => this.$nuxt.$loading?.start())
+
     const rawCookie = this.$nuxt?.context?.req?.headers.cookie || document.cookie || ""
     const cookies = parseCookies(rawCookie)
 
@@ -43,6 +49,8 @@ export default Vue.extend({
     const { cartItems } = await res.json()
     
     this.items = cartItems
+
+    this.$nuxt.$loading?.finish()
   },
 })
 </script>

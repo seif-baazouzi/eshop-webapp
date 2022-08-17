@@ -46,6 +46,8 @@ export default Vue.extend({
   },
 
   async fetch() {
+    this.$nextTick(() => this.$nuxt.$loading?.start())
+
     const rawCookie = this.$nuxt?.context?.req?.headers.cookie || document.cookie || ""
     const cookies = parseCookies(rawCookie)
 
@@ -58,6 +60,8 @@ export default Vue.extend({
     
     this.items = items
     this.pages = pages
+
+    this.$nuxt.$loading?.finish()
   },
 })
 </script>

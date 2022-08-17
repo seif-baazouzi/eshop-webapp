@@ -52,6 +52,8 @@ export default Vue.extend({
   },
 
   async fetch() {
+    this.$nextTick(() => this.$nuxt.$loading?.start())
+
     let res = await fetch(`${apiServer}/shops/${this.$route.params.shopName}`)
     const { shop } = await res.json()
     
@@ -62,6 +64,8 @@ export default Vue.extend({
     
     this.items = items
     this.pages = pages
+
+    this.$nuxt.$loading?.finish()
   },
 })
 </script>

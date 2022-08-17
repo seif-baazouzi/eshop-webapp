@@ -37,11 +37,15 @@ export default Vue.extend({
     }
   },
 
-  async fetch() {    
+  async fetch() {
+    this.$nextTick(() => this.$nuxt.$loading?.start())
+
     const res = await fetch(`${apiServer}/items/${this.$route.params.itemID}`)
     const { item } = await res.json()
     
     this.item = item
+
+    this.$nuxt.$loading?.finish()
   },
 })
 </script>

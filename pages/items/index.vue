@@ -40,11 +40,15 @@ export default Vue.extend({
   },
 
   async fetch() {    
+    this.$nextTick(() => this.$nuxt.$loading?.start())
+
     const res = await fetch(`${apiServer}/items?page=${this.selectedPage}`)
     const { items, pages } = await res.json()
     
     this.items = items
     this.pages = pages
+
+    this.$nuxt.$loading?.finish()
   },
 })
 

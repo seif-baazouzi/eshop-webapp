@@ -16,6 +16,8 @@ export default {
     ]
   },
 
+  loading: '~/components/Loading.vue',
+
   // server
   server: {
     port: 4200
