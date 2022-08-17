@@ -1,6 +1,6 @@
 <template>
   <div class="item">
-    <img :src="apiServer + '/images/' + image" :alt="description">
+    <img :src="apiServer + '/images/' + image" :alt="description" @click="showImagePopup = true">
     <div class="content">
       <Rate :value="rate" />
       <h1>{{ name }}</h1>
@@ -14,6 +14,10 @@
         <h6>Your rate </h6>
         <Rate :value="rateValue" @change="(newRate) => editRate(newRate)" />
       </div>
+
+      <Popup v-if="showImagePopup" @close="showImagePopup = false">
+        <img :src="apiServer + '/images/' + image" :alt="description" class="img-popup">
+      </Popup>
 
       <ItemAddToCart
         :itemID="id"
@@ -65,7 +69,8 @@ export default Vue.extend({
   data() {
     return {
       rateValue: 0,
-    
+      showImagePopup: false,
+
       apiServer: apiServer,
       priceCurrency: priceCurrency,
     }
@@ -112,6 +117,12 @@ export default Vue.extend({
 </script>
 
 <style scoped>
+  img {
+    max-height: 50vh;
+    object-fit: cover;
+    cursor: pointer;
+  }
+  
   .content {
     padding: 1rem;
   }
@@ -166,6 +177,7 @@ export default Vue.extend({
 
     img {
       width: 60%;
+      max-height: calc(100vh - 2.5rem);
     }
 
     .content {

@@ -84,3 +84,10 @@ body {
 .center {
   text-align: center;
 }
+
+.img-popup {
+  width: 75vw !important;
+  max-width: 100%;
+  max-height: 75vh !important;
+  object-fit: cover;
+}
