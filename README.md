@@ -1,6 +1,6 @@
 # Introduction
 
-This is an web interface for the e-shop REST API [https://gitlab.com/seif-projects/e-shop/api](https://gitlab.com/seif-projects/e-shop/api)
+This is an web interface for the e-shop REST API [https://github.com/seif-baazouzi/eshop-api](https://github.com/seif-baazouzi/eshop-api)
 
 # Quick Start
 
