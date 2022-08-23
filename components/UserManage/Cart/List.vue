@@ -6,16 +6,16 @@
         <th>{{ type === "user" ? "Shop" : "Customer" }}</th>
         <th>Address</th>
         <th>Date</th>
-        <th>Viewed</th>
+        <th v-if="type === 'shop'">Viewed</th>
         <th></th>
       </thead>
       <tbody>
-        <tr v-for="(cart) in carts" :class="{ active: !cart.viewed }" :key="cart.cartID">
+        <tr v-for="(cart) in carts" :class="{ active: type === 'shop' && !cart.viewed }" :key="cart.cartID">
           <td>{{ cart.cartID }}</td>
           <td>{{ type === "user" ? cart.shopName : cart.username }}</td>
           <td>{{ cart.address }}</td>
           <td>{{ (new Date(cart.cartDate)).toDateString() }}</td>
-          <td>{{ cart.viewed ? "viewed" : "not-yet" }}</td>
+          <td v-if="type === 'shop'">{{ cart.viewed ? "viewed" : "not-yet" }}</td>
           <td>
             <NuxtLink :to="getCartLink(cart.cartID)">view</NuxtLink>
           </td>
