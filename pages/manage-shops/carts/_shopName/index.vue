@@ -2,6 +2,10 @@
   <div>
     <NavBar />
     
+    <div class="container">
+      <LinksChain :links="linksChain" />
+    </div>
+    
     <div class="container" v-if="carts.length != 0">
       <h4>{{ $route.params.shopName }} Carts List</h4>
       <UserManageCartList
@@ -25,8 +29,8 @@
 <script lang="ts">
 import Vue from 'vue'
 
-import { apiServer } from "../../../config/config"
-import { parseCookies } from "../../../utils/cookies"
+import { apiServer } from "../../../../config/config"
+import { parseCookies } from "../../../../utils/cookies"
 
 export default Vue.extend({
   name: "ShopCartsPage",
@@ -44,6 +48,11 @@ export default Vue.extend({
       selectedPage: (this.$route.query.page && !isNaN(page)) ? page : 1,
       pages: 0,
       carts: [],
+
+      linksChain: [
+        { path: "/manage-shops", label: "ManageShops" },
+        { path: `/manage-shops/carts/${this.$route.params.shopName}`, label: `${this.$route.params.shopName} Carts` },
+      ]
     }
   },
 

@@ -48,7 +48,7 @@ export default Vue.extend({
         return `/carts/${cartID}`
       }
       
-      return `/manage-shops/carts/view/${cartID}`
+      return `/manage-shops/carts/${this.shopName}/view/${cartID}`
     },
   }
 })

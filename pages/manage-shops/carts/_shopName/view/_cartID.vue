@@ -2,6 +2,7 @@
   <div>
     <NavBar />
     <div class="container">
+      <LinksChain :links="linksChain" />
       <UserManageCartSingle
         :cartID="parseInt($route.params.cartID)"
         :isStore="true"
@@ -14,8 +15,8 @@
 <script lang="ts">
 import Vue from 'vue'
 
-import { apiServer } from "../../../../config/config"
-import { parseCookies } from "../../../../utils/cookies"
+import { apiServer } from "../../../../../config/config"
+import { parseCookies } from "../../../../../utils/cookies"
 
 export default Vue.extend({
   name: "ShopCartsPage",
@@ -29,6 +30,12 @@ export default Vue.extend({
   data() {
     return {
       items: [],
+
+      linksChain: [
+        { path: "/manage-shops", label: "ManageShops" },
+        { path: `/manage-shops/carts/${this.$route.params.shopName}`, label: `${this.$route.params.shopName} Carts` },
+        { path: `/manage-shops/carts/${this.$route.params.shopName}/view/${this.$route.params.cartID}`, label: `Cart ${this.$route.params.cartID}` },
+      ]
     }
   },
 

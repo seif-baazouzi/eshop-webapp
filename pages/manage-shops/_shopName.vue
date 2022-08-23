@@ -2,6 +2,7 @@
   <div>
     <NavBar />
     <div class="container">
+      <LinksChain :links="linksChain" />
       <UserManageItemsList
         :items="items"
         :shopName="$route.params.shopName"
@@ -37,7 +38,12 @@ export default Vue.extend({
     return {
       selectedPage: (this.$route.query.page && !isNaN(page)) ? page : 1,
       pages: 0,
-      items: []
+      items: [],
+
+      linksChain: [
+        { path: "/manage-shops", label: "ManageShops" },
+        { path: `/manage-shops/${this.$route.params.shopName}`, label: `${this.$route.params.shopName} Items` },
+      ]
     }
   },
 
