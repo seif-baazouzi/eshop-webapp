@@ -82,6 +82,13 @@
             >ManageShops
           </NuxtLink>
         </li>
+        <li>
+          <NuxtLink
+            to="/settings"
+            :class="{ active: $router.currentRoute.path === '/settings' }"
+            >Settings
+          </NuxtLink>
+        </li>
 
         <li><div class="spacer"></div></li>
 
