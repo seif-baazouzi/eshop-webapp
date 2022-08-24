@@ -51,6 +51,10 @@ $ npm run dev
 
 ![cart items list page](screenshots/cart-items-list.png)
 
+### Settings Page
+
+![settings page](screenshots/settings.png)
+
 # Dark Mode
 
 ![cart items list page](screenshots/dark-mode.png)
