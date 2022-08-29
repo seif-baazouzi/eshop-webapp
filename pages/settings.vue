@@ -21,10 +21,17 @@
           @click="setTab('password')"
           >Update Password
         </div>
+        <div
+          class="tab-item red"
+          :class="{ active: currentTab === 'delete-account' }"
+          @click="setTab('delete-account')"
+          >Delete Account
+        </div>
       </div>
       <SettingsUpdateEmail v-if="currentTab === 'email'" />
       <SettingsUpdateUsername v-if="currentTab === 'username'" />
       <SettingsUpdatePassword v-if="currentTab === 'password'" />
+      <SettingsDeleteAccount v-if="currentTab === 'delete-account'" />
     </div>
   </div>
 </template>
@@ -72,8 +79,16 @@ export default Vue.extend({
     cursor: pointer;
   }
 
+  .tab-item.red {
+    color: var(--red);
+  }
+
   .tab-item.active {
     border-top: .125rem solid var(--blue);
+  }
+
+  .tab-item.red.active {
+    border-top: .125rem solid var(--red);
   }
   
   @media screen and (min-width: 768px) {
@@ -86,6 +101,11 @@ export default Vue.extend({
     .tab-item.active {
       border-top: none;
       border-bottom: .125rem solid var(--blue);
+    }
+
+    .tab-item.red.active {
+      border-top: none;
+      border-bottom: .125rem solid var(--red);
     }
   }
 
